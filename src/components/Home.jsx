@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Container, Typography, Button, Box } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { Container, Typography, Button, Box, Grid, Card, CardContent } from '@mui/material';
+import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Proof from './Proof';
 import Flow from './Flow.jsx';
@@ -84,6 +84,18 @@ const Home = ({ translations }) => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
+
+        <Typography
+          variant="h4"
+          align="center"
+          sx={{
+            mb: 3,
+            color: '#00fff2',
+            fontWeight: 600,
+          }}
+        >
+          简历优化
+        </Typography>
 
 
         <Box

@@ -95,7 +95,39 @@ const Proof = () => {
                   color: 'rgba(255, 255, 255, 0.8)',
                 }}
               >
-                基于AI技术，快速生成针对性简历，突出您的核心竞争力
+                智能生成，一键打造高质量简历
+              </Typography>
+            </Box>
+
+            <Box
+              sx={{
+                width: '300px',
+                p: 3,
+                backgroundColor: 'rgba(2, 8, 22, 0.95)',
+                borderRadius: 2,
+                border: '1px solid rgba(0, 255, 242, 0.3)',
+                boxShadow: '0 0 20px rgba(0, 255, 242, 0.2)',
+              }}
+            >
+              <Typography 
+                variant="h6" 
+                align="center" 
+                sx={{ 
+                  mb: 2,
+                  color: '#00fff2',
+                }}
+              >
+                一岗一简
+              </Typography>
+              <Typography 
+                variant="body1" 
+                align="center" 
+                sx={{ 
+                  color: 'rgba(255, 255, 255, 0.8)',
+                }}
+              >
+                每一个岗位都有不同需求，通过智能解析JD，自动生成与之高度匹配的简历。
+                每一投，都是精准命中。
               </Typography>
             </Box>
 
@@ -126,38 +158,7 @@ const Proof = () => {
                   color: 'rgba(255, 255, 255, 0.8)',
                 }}
               >
-                智能分析简历亮点，提供专业的改进建议和优化方案
-              </Typography>
-            </Box>
-
-            <Box
-              sx={{
-                width: '300px',
-                p: 3,
-                backgroundColor: 'rgba(2, 8, 22, 0.95)',
-                borderRadius: 2,
-                border: '1px solid rgba(0, 255, 242, 0.3)',
-                boxShadow: '0 0 20px rgba(0, 255, 242, 0.2)',
-              }}
-            >
-              <Typography 
-                variant="h6" 
-                align="center" 
-                sx={{ 
-                  mb: 2,
-                  color: '#00fff2',
-                }}
-              >
-                持续更新迭代
-              </Typography>
-              <Typography 
-                variant="body1" 
-                align="center" 
-                sx={{ 
-                  color: 'rgba(255, 255, 255, 0.8)',
-                }}
-              >
-                根据不同岗位要求，随时调整简历内容，确保最佳匹配度
+                亮点提炼，专业优化建议助你脱颖而出
               </Typography>
             </Box>
           </Box>
