@@ -156,6 +156,9 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
   const theme = createAppTheme(themeMode);
 
+  // 确保 translations 总是有值
+  const currentTranslations = translations[language] || translations.zh;
+
   const toggleLanguage = () => {
     const newLanguage = language === 'zh' ? 'en' : 'zh';
     setLanguage(newLanguage);
@@ -176,23 +179,23 @@ function App() {
         }}>
           <StarCursor />
           <Navbar 
-            translations={translations[language]} 
+            translations={currentTranslations} 
             isAuthenticated={isAuthenticated}
             setIsAuthenticated={setIsAuthenticated}
           />
           <Box sx={{ mt: 8 }}>
             <Routes>
-              <Route path="/" element={<Home translations={translations[language]} />} />
-              <Route path="/editor" element={<ResumeEditor translations={translations[language]} />} />
-              <Route path="/result" element={<ResumeResult translations={translations[language]} />} />
+              <Route path="/" element={<Home translations={currentTranslations} />} />
+              <Route path="/editor" element={<ResumeEditor translations={currentTranslations} />} />
+              <Route path="/result" element={<ResumeResult translations={currentTranslations} />} />
               <Route path="/success-stories" element={<SuccessStories />} />
               <Route path="/user-guide" element={<UserGuide />} />
-              <Route path="/signin" element={<SignIn translations={translations[language]} setIsAuthenticated={setIsAuthenticated}/>} />
-              <Route path="/signup" element={<SignUp translations={translations[language]} setIsAuthenticated={setIsAuthenticated}/>} />
-              <Route path="/profile" element={<Profile translations={translations[language]} />} />
-              <Route path="/vip" element={<Vip translations={translations[language]} />} />
-              <Route path="/payment_options" element={<PaymentMethod translations={translations[language]} />} />
-              <Route path="*" element={<NotFound translations={translations[language]} />} />
+              <Route path="/signin" element={<SignIn translations={currentTranslations} setIsAuthenticated={setIsAuthenticated}/>} />
+              <Route path="/signup" element={<SignUp translations={currentTranslations} setIsAuthenticated={setIsAuthenticated}/>} />
+              <Route path="/profile" element={<Profile translations={currentTranslations} />} />
+              <Route path="/vip" element={<Vip translations={currentTranslations} />} />
+              <Route path="/payment_options" element={<PaymentMethod translations={currentTranslations} />} />
+              <Route path="*" element={<NotFound translations={currentTranslations} />} />
             </Routes>
           </Box>
         </Box>
