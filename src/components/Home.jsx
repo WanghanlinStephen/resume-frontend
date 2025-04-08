@@ -84,18 +84,7 @@ const Home = ({ translations }) => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <Typography
-          variant="h3"
-          align="center"
-          sx={{
-            mb: 6,
-            color: '#00fff2',
-            fontWeight: 700,
-            textShadow: '0 0 10px rgba(0, 255, 242, 0.3)',
-          }}
-        >
-          简历优化效果
-        </Typography>
+
 
         <Box
           sx={{
@@ -131,7 +120,7 @@ const Home = ({ translations }) => {
               }}
             >
               <img
-                src="https://auto-resume-storage.s3.us-east-2.amazonaws.com/cover/origin.png"
+                src="https://auto-resume-storage.s3.us-east-2.amazonaws.com/cover/origin.jpg"
                 alt="原始简历"
                 style={{
                   width: '100%',
@@ -180,7 +169,7 @@ const Home = ({ translations }) => {
               }}
             >
               <img
-                src="https://auto-resume-storage.s3.us-east-2.amazonaws.com/cover/modified.png"
+                src="https://auto-resume-storage.s3.us-east-2.amazonaws.com/cover/modified.jpg"
                 alt="优化后的简历"
                 style={{
                   width: '100%',

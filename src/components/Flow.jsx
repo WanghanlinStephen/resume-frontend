@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Container, Tabs, Tab } from '@mui/material';
+import { Box, Typography, Container, Tabs, Tab, Grid, Card, CardContent } from '@mui/material';
 
 const Flow = () => {
   const [value, setValue] = React.useState(0);
@@ -11,18 +11,6 @@ const Flow = () => {
   return (
     <Container maxWidth="lg">
       <Box sx={{ mt: 15, mb: 10, textAlign: 'center' }}>
-        <Typography 
-          variant="h3" 
-          component="h2" 
-          sx={{ 
-            color: '#00fff2',
-            mb: 4,
-            fontWeight: 700,
-            textShadow: '0 0 10px rgba(0, 255, 242, 0.3)',
-          }}
-        >
-          使用演示
-        </Typography>
 
         <Tabs
           value={value}

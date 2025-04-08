@@ -81,7 +81,7 @@ const createAppTheme = (mode) =>
 
 const translations = {
   zh: {
-    homeTitle: 'AI驱动的智能简历助手',
+    homeTitle: '每一个岗位，都该有一份专属简历',
     homeDescription: '一键生成针对性简历，让每次投递都是量身定制',
     startButton: '立即优化简历',
     switchLanguage: '切换到 English',

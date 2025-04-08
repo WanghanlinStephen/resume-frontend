@@ -123,7 +123,7 @@ const jobCategories = [
   }
 ];
 
-const steps = ['选择职位', '上传简历', '上传职位描述'];
+const steps = ['修改示范', '选择职位', '上传简历', '上传职位描述'];
 
 const ResumeEditor = ({ translations }) => {
   const [activeStep, setActiveStep] = useState(0);
@@ -321,13 +321,88 @@ const ResumeEditor = ({ translations }) => {
   };
 
   const handleBack = () => {
-    setActiveStep((prev) => prev - 1);
+    if (activeStep === 0) {
+      navigate('/');
+    } else {
+      setActiveStep((prev) => prev - 1);
+    }
   };
 
   // 渲染不同步骤的内容
-  const renderStepContent = (stepIndex) => {
-    switch (stepIndex) {
+  const getStepContent = (step) => {
+    switch (step) {
       case 0:
+        return (
+          <Box sx={{ mt: 4 }}>
+            <Grid container spacing={4} justifyContent="center">
+              <Grid item xs={12} md={6}>
+                <Card sx={{ 
+                  backgroundColor: 'rgba(2, 8, 22, 0.8)',
+                  border: '1px solid rgba(0, 255, 242, 0.3)',
+                  boxShadow: '0 0 20px rgba(0, 255, 242, 0.1)',
+                  height: '100%'
+                }}>
+                  <CardContent>
+                    <Typography 
+                      variant="h6" 
+                      sx={{ 
+                        color: '#00fff2',
+                        mb: 2,
+                        fontWeight: 500
+                      }}
+                    >
+                      原始简历
+                    </Typography>
+                    <Box
+                      component="img"
+                      src="https://auto-resume-storage.s3.us-east-2.amazonaws.com/cover/origin.jpg"
+                      alt="原始简历"
+                      sx={{
+                        width: '100%',
+                        height: 'auto',
+                        borderRadius: 1,
+                        border: '1px solid rgba(0, 255, 242, 0.2)',
+                      }}
+                    />
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Card sx={{ 
+                  backgroundColor: 'rgba(2, 8, 22, 0.8)',
+                  border: '1px solid rgba(0, 255, 242, 0.3)',
+                  boxShadow: '0 0 20px rgba(0, 255, 242, 0.1)',
+                  height: '100%'
+                }}>
+                  <CardContent>
+                    <Typography 
+                      variant="h6" 
+                      sx={{ 
+                        color: '#00fff2',
+                        mb: 2,
+                        fontWeight: 500
+                      }}
+                    >
+                      优化后的简历
+                    </Typography>
+                    <Box
+                      component="img"
+                      src="https://auto-resume-storage.s3.us-east-2.amazonaws.com/cover/modified.jpg"
+                      alt="优化后的简历"
+                      sx={{
+                        width: '100%',
+                        height: 'auto',
+                        borderRadius: 1,
+                        border: '1px solid rgba(0, 255, 242, 0.2)',
+                      }}
+                    />
+                  </CardContent>
+                </Card>
+              </Grid>
+            </Grid>
+          </Box>
+        );
+      case 1:
         return (
           <Box>
             <Typography variant="h6" gutterBottom>选择目标岗位简历模版</Typography>
@@ -398,144 +473,6 @@ const ResumeEditor = ({ translations }) => {
             )}
           </Box>
         );
-      case 1:
-        return (
-          <Box>
-            <Typography variant="h6" gutterBottom>简历智能优化</Typography>
-            
-            {!showResumeForm ? (
-              <Grid container spacing={4} justifyContent="center">
-                {/* 添加一个按钮，让用户可以选择填写简历表单 */}
-                <Grid item xs={12} sx={{ mb: 2, textAlign: 'center' }}>
-                  <Button
-                    variant="outlined"
-                    onClick={() => setShowResumeForm(true)}
-                    sx={{
-                      borderColor: 'rgba(0, 255, 242, 0.5)',
-                      color: '#00fff2',
-                      '&:hover': {
-                        borderColor: '#00fff2',
-                        backgroundColor: 'rgba(0, 255, 242, 0.1)',
-                      }
-                    }}
-                  >
-                    没有简历？点击这里填写
-                  </Button>
-                </Grid>
-                
-                {/* 文件上传区域 */}
-                <Grid item xs={12} sm={10} md={8}>
-                  <Paper 
-                    sx={{ 
-                      p: 3,
-                      background: 'rgba(2, 8, 22, 0.95)',
-                      backdropFilter: 'blur(10px)',
-                      border: '1px solid rgba(0, 255, 242, 0.3)',
-                      aspectRatio: '1/1',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      justifyContent: 'center'
-                    }}
-                  >
-                    <Typography variant="h6" gutterBottom sx={{ color: '#00fff2', textAlign: 'center' }}>
-                      上传已有简历
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)', mb: 3, textAlign: 'center' }}>
-                      支持 PDF、Word 格式，文件大小不超过 10MB
-                    </Typography>
-
-                    {!file ? (
-                      <Box
-                        sx={{
-                          border: '2px dashed rgba(0, 255, 242, 0.3)',
-                          borderRadius: 2,
-                          p: 4,
-                          textAlign: 'center',
-                          width: '80%',
-                          aspectRatio: '1/1',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          cursor: 'pointer',
-                          '&:hover': {
-                            borderColor: '#00fff2',
-                            backgroundColor: 'rgba(0, 255, 242, 0.05)',
-                          }
-                        }}
-                        component="label"
-                      >
-                        <input
-                          type="file"
-                          hidden
-                          accept=".pdf,.doc,.docx"
-                          onChange={handleFileUpload}
-                        />
-                        <CloudUploadIcon sx={{ fontSize: 48, color: '#00fff2', mb: 2 }} />
-                        <Typography sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
-                          点击或拖拽文件到此处上传
-                        </Typography>
-                      </Box>
-                    ) : (
-                      <Box
-                        sx={{
-                          border: '2px solid rgba(0, 255, 242, 0.3)',
-                          borderRadius: 2,
-                          p: 3,
-                          width: '80%',
-                          aspectRatio: '1/1',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          gap: 2
-                        }}
-                      >
-                        <ArticleIcon sx={{ fontSize: 48, color: '#00fff2' }} />
-                        <Typography sx={{ color: 'rgba(255, 255, 255, 0.9)', textAlign: 'center' }}>
-                          {file.name}
-                        </Typography>
-                        <Tooltip title="删除文件">
-                          <IconButton onClick={removeFile} sx={{ color: '#00fff2' }}>
-                            <DeleteIcon />
-                          </IconButton>
-                        </Tooltip>
-                      </Box>
-                    )}
-                  </Paper>
-                </Grid>
-              </Grid>
-            ) : (
-              <Box>
-                <Box sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <Typography variant="h6" gutterBottom sx={{ color: '#00fff2' }}>
-                    填写简历信息
-                  </Typography>
-                  <Button
-                    variant="outlined"
-                    onClick={() => setShowResumeForm(false)}
-                    sx={{
-                      borderColor: 'rgba(0, 255, 242, 0.5)',
-                      color: '#00fff2',
-                      '&:hover': {
-                        borderColor: '#00fff2',
-                        backgroundColor: 'rgba(0, 255, 242, 0.1)',
-                      }
-                    }}
-                  >
-                    返回上传简历
-                  </Button>
-                </Box>
-                <ResumeForm 
-                  onFormChange={(formData) => {
-                    setResumeText(JSON.stringify(formData));
-                  }}
-                />
-              </Box>
-            )}
-          </Box>
-        );
       case 2:
         return (
           <Box>
@@ -567,8 +504,39 @@ const ResumeEditor = ({ translations }) => {
             />
           </Box>
         );
+      case 3:
+        return (
+          <Box>
+            <Typography variant="h6" gutterBottom>上传职位JD</Typography>
+            <TextField
+              label="请粘贴目标职位JD"
+              multiline
+              rows={8}
+              value={customText}
+              onChange={(e) => setCustomText(e.target.value)}
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  color: 'rgba(255, 255, 255, 0.9)',
+                  backgroundColor: 'rgba(0, 255, 242, 0.05)',
+                  '& fieldset': {
+                    borderColor: 'rgba(0, 255, 242, 0.3)',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'rgba(0, 255, 242, 0.5)',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#00fff2',
+                  },
+                },
+              }}
+            />
+          </Box>
+        );
       default:
-        return null;
+        return 'Unknown step';
     }
   };
 
@@ -608,13 +576,12 @@ const ResumeEditor = ({ translations }) => {
           </Box>
         )}
 
-        {renderStepContent(activeStep)}
+        {getStepContent(activeStep)}
 
         <Box sx={{ mt: 4, display: 'flex', justifyContent: 'space-between' }}>
           <Button
             variant="outlined"
             onClick={handleBack}
-            disabled={activeStep === 0}
             sx={{
               borderColor: 'rgba(0, 255, 242, 0.5)',
               color: '#00fff2',
@@ -629,7 +596,7 @@ const ResumeEditor = ({ translations }) => {
           <Button
             variant="contained"
             onClick={handleNext}
-            disabled={loading || (activeStep === 0 && !selectedJob) || (activeStep === 1 && !file && !resumeText.trim())}
+            disabled={loading || (activeStep === 1 && !selectedJob) || (activeStep === 2 && !file && !resumeText.trim())}
             sx={{
               backgroundColor: '#00fff2',
               color: '#020816',

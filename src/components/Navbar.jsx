@@ -77,7 +77,7 @@ const Navbar = ({ translations, isAuthenticated, setIsAuthenticated }) => {
               }
             }}
           >
-            AI简历助手
+            一岗一简
           </Typography>
 
           {/* Mobile Menu */}
