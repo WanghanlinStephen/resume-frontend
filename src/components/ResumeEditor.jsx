@@ -21,14 +21,20 @@ import {
   CardContent,
   IconButton,
   Tooltip,
-  CircularProgress
+  CircularProgress,
+  Divider
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ArticleIcon from '@mui/icons-material/Article';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 import ResumeForm from './ResumeForm';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 // 岗位类别列表
 const jobCategories = [
@@ -140,6 +146,490 @@ const ResumeEditor = ({ translations }) => {
   const [showResumeForm, setShowResumeForm] = useState(false);
   const [progress, setProgress] = useState(0);
 
+  // 添加简历表单状态
+  const [formData, setFormData] = useState({
+    basicInfo: {
+      name: '',
+      phone: '',
+      email: '',
+      jobIntention: ''
+    },
+    education: [{ school: '', major: '', degree: '', startDate: null, endDate: null }],
+    workExperience: [{ company: '', position: '', startDate: null, endDate: null, description: '' }],
+    projectExperience: [{ name: '', role: '', startDate: null, endDate: null, description: '' }],
+    skills: [{ skill: '', level: '' }]
+  });
+
+  // 处理表单输入变化
+  const handleFormChange = (section, index, field, value) => {
+    setFormData(prev => {
+      const newData = { ...prev };
+      if (Array.isArray(prev[section])) {
+        newData[section] = [...prev[section]];
+        newData[section][index] = { ...newData[section][index], [field]: value };
+      } else {
+        newData[section] = { ...prev[section], [field]: value };
+      }
+      return newData;
+    });
+  };
+
+  // 添加新的表单项
+  const addFormItem = (section) => {
+    setFormData(prev => ({
+      ...prev,
+      [section]: [...prev[section], getEmptyItem(section)]
+    }));
+  };
+
+  // 删除表单项
+  const removeFormItem = (section, index) => {
+    setFormData(prev => ({
+      ...prev,
+      [section]: prev[section].filter((_, i) => i !== index)
+    }));
+  };
+
+  // 获取空表单项
+  const getEmptyItem = (section) => {
+    switch (section) {
+      case 'education':
+        return { school: '', major: '', degree: '', startDate: null, endDate: null };
+      case 'workExperience':
+        return { company: '', position: '', startDate: null, endDate: null, description: '' };
+      case 'projectExperience':
+        return { name: '', role: '', startDate: null, endDate: null, description: '' };
+      case 'skills':
+        return { skill: '', level: '' };
+      default:
+        return {};
+    }
+  };
+
+  // 处理表单提交
+  const handleFormSubmit = () => {
+    // 将表单数据转换为JSON格式
+    const resumeJson = {
+      basicInfo: formData.basicInfo,
+      education: formData.education.map(edu => ({
+        ...edu,
+        startDate: edu.startDate ? edu.startDate.toISOString().split('T')[0] : null,
+        endDate: edu.endDate ? edu.endDate.toISOString().split('T')[0] : null
+      })),
+      workExperience: formData.workExperience.map(work => ({
+        ...work,
+        startDate: work.startDate ? work.startDate.toISOString().split('T')[0] : null,
+        endDate: work.endDate ? work.endDate.toISOString().split('T')[0] : null
+      })),
+      projectExperience: formData.projectExperience.map(proj => ({
+        ...proj,
+        startDate: proj.startDate ? proj.startDate.toISOString().split('T')[0] : null,
+        endDate: proj.endDate ? proj.endDate.toISOString().split('T')[0] : null
+      })),
+      skills: formData.skills
+    };
+
+    // 将JSON对象转换为字符串
+    const resumeTextJson = JSON.stringify(resumeJson);
+    setResumeText(resumeTextJson);
+    setShowResumeForm(false);
+  };
+
+  // 渲染简历表单
+  const renderResumeForm = () => {
+    return (
+      <Box sx={{ mt: 4 }}>
+        <Typography variant="h6" gutterBottom sx={{ color: '#00fff2' }}>
+          填写简历信息
+        </Typography>
+        
+        {/* 基本信息 */}
+        <Box sx={{ mb: 4 }}>
+          <Typography variant="subtitle1" gutterBottom sx={{ color: '#00fff2' }}>
+            基本信息
+          </Typography>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                fullWidth
+                label="姓名"
+                value={formData.basicInfo.name}
+                onChange={(e) => handleFormChange('basicInfo', null, 'name', e.target.value)}
+                sx={{ input: { color: 'white' } }}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                fullWidth
+                label="电话"
+                value={formData.basicInfo.phone}
+                onChange={(e) => handleFormChange('basicInfo', null, 'phone', e.target.value)}
+                sx={{ input: { color: 'white' } }}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                fullWidth
+                label="邮箱"
+                value={formData.basicInfo.email}
+                onChange={(e) => handleFormChange('basicInfo', null, 'email', e.target.value)}
+                sx={{ input: { color: 'white' } }}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                fullWidth
+                label="求职意向"
+                value={formData.basicInfo.jobIntention}
+                onChange={(e) => handleFormChange('basicInfo', null, 'jobIntention', e.target.value)}
+                sx={{ input: { color: 'white' } }}
+              />
+            </Grid>
+          </Grid>
+        </Box>
+
+        {/* 教育经历 */}
+        <Box sx={{ mb: 4 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+            <Typography variant="subtitle1" sx={{ color: '#00fff2' }}>
+              教育经历
+            </Typography>
+            <Button
+              startIcon={<AddIcon />}
+              onClick={() => addFormItem('education')}
+              sx={{ color: '#00fff2' }}
+            >
+              添加
+            </Button>
+          </Box>
+          {formData.education.map((edu, index) => (
+            <Box key={index} sx={{ mb: 2, p: 2, border: '1px solid rgba(0, 255, 242, 0.3)', borderRadius: 1 }}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    fullWidth
+                    label="学校"
+                    value={edu.school}
+                    onChange={(e) => handleFormChange('education', index, 'school', e.target.value)}
+                    sx={{ input: { color: 'white' } }}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    fullWidth
+                    label="专业"
+                    value={edu.major}
+                    onChange={(e) => handleFormChange('education', index, 'major', e.target.value)}
+                    sx={{ input: { color: 'white' } }}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <TextField
+                    fullWidth
+                    label="学历"
+                    value={edu.degree}
+                    onChange={(e) => handleFormChange('education', index, 'degree', e.target.value)}
+                    sx={{ input: { color: 'white' } }}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      label="开始时间"
+                      value={edu.startDate}
+                      onChange={(newValue) => handleFormChange('education', index, 'startDate', newValue)}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          fullWidth
+                          sx={{ input: { color: 'white' } }}
+                        />
+                      )}
+                    />
+                  </LocalizationProvider>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      label="结束时间"
+                      value={edu.endDate}
+                      onChange={(newValue) => handleFormChange('education', index, 'endDate', newValue)}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          fullWidth
+                          sx={{ input: { color: 'white' } }}
+                        />
+                      )}
+                    />
+                  </LocalizationProvider>
+                </Grid>
+              </Grid>
+              {index > 0 && (
+                <Button
+                  startIcon={<RemoveIcon />}
+                  onClick={() => removeFormItem('education', index)}
+                  sx={{ mt: 1, color: '#ff4444' }}
+                >
+                  删除
+                </Button>
+              )}
+            </Box>
+          ))}
+        </Box>
+
+        {/* 工作经历 */}
+        <Box sx={{ mb: 4 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+            <Typography variant="subtitle1" sx={{ color: '#00fff2' }}>
+              工作经历
+            </Typography>
+            <Button
+              startIcon={<AddIcon />}
+              onClick={() => addFormItem('workExperience')}
+              sx={{ color: '#00fff2' }}
+            >
+              添加
+            </Button>
+          </Box>
+          {formData.workExperience.map((work, index) => (
+            <Box key={index} sx={{ mb: 2, p: 2, border: '1px solid rgba(0, 255, 242, 0.3)', borderRadius: 1 }}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    fullWidth
+                    label="公司"
+                    value={work.company}
+                    onChange={(e) => handleFormChange('workExperience', index, 'company', e.target.value)}
+                    sx={{ input: { color: 'white' } }}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    fullWidth
+                    label="职位"
+                    value={work.position}
+                    onChange={(e) => handleFormChange('workExperience', index, 'position', e.target.value)}
+                    sx={{ input: { color: 'white' } }}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      label="开始时间"
+                      value={work.startDate}
+                      onChange={(newValue) => handleFormChange('workExperience', index, 'startDate', newValue)}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          fullWidth
+                          sx={{ input: { color: 'white' } }}
+                        />
+                      )}
+                    />
+                  </LocalizationProvider>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      label="结束时间"
+                      value={work.endDate}
+                      onChange={(newValue) => handleFormChange('workExperience', index, 'endDate', newValue)}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          fullWidth
+                          sx={{ input: { color: 'white' } }}
+                        />
+                      )}
+                    />
+                  </LocalizationProvider>
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    multiline
+                    rows={4}
+                    label="工作描述"
+                    value={work.description}
+                    onChange={(e) => handleFormChange('workExperience', index, 'description', e.target.value)}
+                    sx={{ input: { color: 'white' } }}
+                  />
+                </Grid>
+              </Grid>
+              {index > 0 && (
+                <Button
+                  startIcon={<RemoveIcon />}
+                  onClick={() => removeFormItem('workExperience', index)}
+                  sx={{ mt: 1, color: '#ff4444' }}
+                >
+                  删除
+                </Button>
+              )}
+            </Box>
+          ))}
+        </Box>
+
+        {/* 项目经历 */}
+        <Box sx={{ mb: 4 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+            <Typography variant="subtitle1" sx={{ color: '#00fff2' }}>
+              项目经历
+            </Typography>
+            <Button
+              startIcon={<AddIcon />}
+              onClick={() => addFormItem('projectExperience')}
+              sx={{ color: '#00fff2' }}
+            >
+              添加
+            </Button>
+          </Box>
+          {formData.projectExperience.map((proj, index) => (
+            <Box key={index} sx={{ mb: 2, p: 2, border: '1px solid rgba(0, 255, 242, 0.3)', borderRadius: 1 }}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    fullWidth
+                    label="项目名称"
+                    value={proj.name}
+                    onChange={(e) => handleFormChange('projectExperience', index, 'name', e.target.value)}
+                    sx={{ input: { color: 'white' } }}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    fullWidth
+                    label="担任角色"
+                    value={proj.role}
+                    onChange={(e) => handleFormChange('projectExperience', index, 'role', e.target.value)}
+                    sx={{ input: { color: 'white' } }}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      label="开始时间"
+                      value={proj.startDate}
+                      onChange={(newValue) => handleFormChange('projectExperience', index, 'startDate', newValue)}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          fullWidth
+                          sx={{ input: { color: 'white' } }}
+                        />
+                      )}
+                    />
+                  </LocalizationProvider>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      label="结束时间"
+                      value={proj.endDate}
+                      onChange={(newValue) => handleFormChange('projectExperience', index, 'endDate', newValue)}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          fullWidth
+                          sx={{ input: { color: 'white' } }}
+                        />
+                      )}
+                    />
+                  </LocalizationProvider>
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    multiline
+                    rows={4}
+                    label="项目描述"
+                    value={proj.description}
+                    onChange={(e) => handleFormChange('projectExperience', index, 'description', e.target.value)}
+                    sx={{ input: { color: 'white' } }}
+                  />
+                </Grid>
+              </Grid>
+              {index > 0 && (
+                <Button
+                  startIcon={<RemoveIcon />}
+                  onClick={() => removeFormItem('projectExperience', index)}
+                  sx={{ mt: 1, color: '#ff4444' }}
+                >
+                  删除
+                </Button>
+              )}
+            </Box>
+          ))}
+        </Box>
+
+        {/* 技能特长 */}
+        <Box sx={{ mb: 4 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+            <Typography variant="subtitle1" sx={{ color: '#00fff2' }}>
+              技能特长
+            </Typography>
+            <Button
+              startIcon={<AddIcon />}
+              onClick={() => addFormItem('skills')}
+              sx={{ color: '#00fff2' }}
+            >
+              添加
+            </Button>
+          </Box>
+          {formData.skills.map((skill, index) => (
+            <Box key={index} sx={{ mb: 2, p: 2, border: '1px solid rgba(0, 255, 242, 0.3)', borderRadius: 1 }}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    fullWidth
+                    label="技能名称"
+                    value={skill.skill}
+                    onChange={(e) => handleFormChange('skills', index, 'skill', e.target.value)}
+                    sx={{ input: { color: 'white' } }}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    fullWidth
+                    label="熟练程度"
+                    value={skill.level}
+                    onChange={(e) => handleFormChange('skills', index, 'level', e.target.value)}
+                    sx={{ input: { color: 'white' } }}
+                  />
+                </Grid>
+              </Grid>
+              {index > 0 && (
+                <Button
+                  startIcon={<RemoveIcon />}
+                  onClick={() => removeFormItem('skills', index)}
+                  sx={{ mt: 1, color: '#ff4444' }}
+                >
+                  删除
+                </Button>
+              )}
+            </Box>
+          ))}
+        </Box>
+
+        {/* <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 4 }}>
+          <Button
+            variant="contained"
+            onClick={handleFormSubmit}
+            sx={{
+              backgroundColor: '#00fff2',
+              color: '#020816',
+              '&:hover': {
+                backgroundColor: 'rgba(0, 255, 242, 0.8)',
+              }
+            }}
+          >
+            生成简历
+          </Button>
+        </Box> */}
+      </Box>
+    );
+  };
+
   // 处理岗位选择
   const handleJobSelect = (categoryId, jobValue) => {
     setSelectedCategory(categoryId);
@@ -236,87 +726,41 @@ const ResumeEditor = ({ translations }) => {
     }
   };
 
-  const handleSubmit = async () => {
-    try {
-      setError('');
-      setLoading(true);
-      const formData = new FormData();
-      
-      // 添加输入类型标识
-      if (file) {
-        formData.append('input_type', 'file');
-        formData.append('resume_file', file);
-      } else {
-        formData.append('input_type', 'text');
-        formData.append('resume_text', resumeText.trim());
-      }
-      
-      // 添加职位信息
-      formData.append('job_category', selectedCategory);
-      formData.append('job_position', selectedJob === 'custom' ? customJob : selectedJob);
-      formData.append('customized_info', customText.trim());
-
-      console.log('准备发送请求到后端...');
-      console.log('请求数据:', {
-        input_type: file ? 'file' : 'text',
-        job_category: selectedCategory,
-        job_position: selectedJob === 'custom' ? customJob : selectedJob,
-        customized_info: customText.trim()
-      });
-
-      const response = await axios.post('http://localhost:8000/result/', formData, {
-        headers: { 
-          'Content-Type': 'multipart/form-data',
-          'Accept': 'application/json'
-        },
-        validateStatus: function (status) {
-          return (status >= 200 && status < 300) || status === 202;
-        },
-        timeout: 30000 // 设置30秒超时
-      });
-
-      console.log('收到后端响应:', response);
-
-      if (response.data && response.data.task_id) {
-        console.log(`✅ 任务已提交，Task ID: ${response.data.task_id}`);
-        // 开始轮询任务状态
-        pollTaskStatus(response.data.task_id);
-      } else {
-        console.error('No task_id in response:', response.data);
-        setError('任务提交失败：未获取到任务ID');
-        setLoading(false);
-      }
-    } catch (err) {
-      console.error('上传失败，详细错误:', {
-        message: err.message,
-        code: err.code,
-        response: err.response,
-        request: err.request
-      });
-      
-      if (err.code === 'ECONNABORTED') {
-        setError('请求超时，请检查网络连接');
-      } else if (err.response) {
-        // 服务器返回了错误状态码
-        const errorMessage = err.response.data?.error || err.response.data?.message || '服务器错误';
-        setError(`提交失败：${errorMessage}`);
-      } else if (err.request) {
-        // 请求已发出，但没有收到响应
-        console.error('请求已发出但未收到响应，可能是CORS问题或后端服务未启动');
-        setError('无法连接到服务器，请确保后端服务已启动且正常运行');
-      } else {
-        // 请求配置出错
-        setError(`提交失败：${err.message}`);
-      }
-      setLoading(false);
-    }
-  };
-
   const handleNext = () => {
+    if (activeStep === 2) {
+      // 在进入下一步之前，将表单数据转换为JSON格式
+      if (!file && !resumeText) {
+        // 将表单数据转换为JSON格式
+        const resumeJson = {
+          basicInfo: formData.basicInfo,
+          education: formData.education.map(edu => ({
+            ...edu,
+            startDate: edu.startDate ? edu.startDate.toISOString().split('T')[0] : null,
+            endDate: edu.endDate ? edu.endDate.toISOString().split('T')[0] : null
+          })),
+          workExperience: formData.workExperience.map(work => ({
+            ...work,
+            startDate: work.startDate ? work.startDate.toISOString().split('T')[0] : null,
+            endDate: work.endDate ? work.endDate.toISOString().split('T')[0] : null
+          })),
+          projectExperience: formData.projectExperience.map(proj => ({
+            ...proj,
+            startDate: proj.startDate ? proj.startDate.toISOString().split('T')[0] : null,
+            endDate: proj.endDate ? proj.endDate.toISOString().split('T')[0] : null
+          })),
+          skills: formData.skills
+        };
+
+        // 将JSON对象转换为字符串
+        const resumeTextJson = JSON.stringify(resumeJson);
+        setResumeText(resumeTextJson);
+      }
+    }
+    
     if (activeStep === steps.length - 1) {
       handleSubmit();
     } else {
-      setActiveStep((prev) => prev + 1);
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
   };
 
@@ -324,7 +768,40 @@ const ResumeEditor = ({ translations }) => {
     if (activeStep === 0) {
       navigate('/');
     } else {
-      setActiveStep((prev) => prev - 1);
+      setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    }
+  };
+
+  const handleSubmit = async () => {
+    try {
+      setLoading(true);
+      const formData = new FormData();
+      
+      if (file) {
+        formData.append('resume_file', file);
+        formData.append('input_type', 'file');
+      } else if (resumeText) {
+        formData.append('resume_text', resumeText);
+        formData.append('input_type', 'text');
+      }
+      
+      if (selectedCategory) {
+        formData.append('job_category', selectedCategory);
+      }
+      if (selectedJob) {
+        formData.append('job_position', selectedJob);
+      }
+      if (customText) {
+        formData.append('customized_info', customText);
+      }
+
+      const response = await axios.post('http://localhost:8000/result/', formData);
+      if (response.data.task_id) {
+        pollTaskStatus(response.data.task_id);
+      }
+    } catch (error) {
+      setError('提交失败，请重试');
+      setLoading(false);
     }
   };
 
@@ -448,26 +925,26 @@ const ResumeEditor = ({ translations }) => {
                 <Typography variant="h6" gutterBottom>选择具体职位模版</Typography>
                 <Grid container spacing={2}>
                   {jobCategories
-                  .find(c => c.id === selectedCategory)
-                  ?.subCategories.map((job) => (
-                    <Grid item xs={12} sm={6} md={4} key={job.value}>
-                      <Button
-                        fullWidth
-                        variant={selectedJob === job.value ? "contained" : "outlined"}
-                        onClick={() => handleJobSelect(selectedCategory, job.value)}
-                        sx={{
-                          borderColor: 'rgba(0, 255, 242, 0.3)',
-                          color: selectedJob === job.value ? '#020816' : '#00fff2',
-                          height: '48px',
-                          '&:hover': {
-                            borderColor: 'rgba(0, 255, 242, 0.5)',
-                          }
-                        }}
-                      >
-                        {job.name}
-                      </Button>
-                    </Grid>
-                  ))}
+                    .find(c => c.id === selectedCategory)
+                    ?.subCategories.map((job) => (
+                      <Grid item xs={12} sm={6} md={4} key={job.value}>
+                        <Button
+                          fullWidth
+                          variant={selectedJob === job.value ? "contained" : "outlined"}
+                          onClick={() => handleJobSelect(selectedCategory, job.value)}
+                          sx={{
+                            borderColor: 'rgba(0, 255, 242, 0.3)',
+                            color: selectedJob === job.value ? '#020816' : '#00fff2',
+                            height: '48px',
+                            '&:hover': {
+                              borderColor: 'rgba(0, 255, 242, 0.5)',
+                            }
+                          }}
+                        >
+                          {job.name}
+                        </Button>
+                      </Grid>
+                    ))}
                 </Grid>
               </Box>
             )}
@@ -475,33 +952,83 @@ const ResumeEditor = ({ translations }) => {
         );
       case 2:
         return (
-          <Box>
-            <Typography variant="h6" gutterBottom>上传职位JD</Typography>
-            <TextField
-              label="请粘贴目标职位JD"
-              multiline
-              rows={8}
-              value={customText}
-              onChange={(e) => setCustomText(e.target.value)}
-              fullWidth
-              margin="normal"
-              variant="outlined"
-              sx={{
-                '& .MuiOutlinedInput-root': {
-                  color: 'rgba(255, 255, 255, 0.9)',
-                  backgroundColor: 'rgba(0, 255, 242, 0.05)',
-                  '& fieldset': {
-                    borderColor: 'rgba(0, 255, 242, 0.3)',
-                  },
-                  '&:hover fieldset': {
+          <Box sx={{ mt: 2 }}>
+            <Typography variant="h6" gutterBottom>
+              上传简历
+            </Typography>
+            <Grid container spacing={2} justifyContent="center">
+              <Grid item xs={12} md={8}>
+                <Card sx={{ 
+                  backgroundColor: 'rgba(2, 8, 22, 0.8)',
+                  border: '2px dashed rgba(0, 255, 242, 0.3)',
+                  borderRadius: 2,
+                  p: 3,
+                  textAlign: 'center',
+                  mb: 3,
+                  '&:hover': {
                     borderColor: 'rgba(0, 255, 242, 0.5)',
-                  },
-                  '&.Mui-focused fieldset': {
-                    borderColor: '#00fff2',
-                  },
-                },
-              }}
-            />
+                    backgroundColor: 'rgba(0, 255, 242, 0.05)',
+                  }
+                }}>
+                  <input
+                    accept=".pdf,.doc,.docx"
+                    style={{ display: 'none' }}
+                    id="resume-file-upload"
+                    type="file"
+                    onChange={handleFileUpload}
+                  />
+                  <label htmlFor="resume-file-upload">
+                    <Button
+                      variant="outlined"
+                      component="span"
+                      sx={{
+                        borderColor: 'rgba(0, 255, 242, 0.5)',
+                        color: '#00fff2',
+                        mb: 2,
+                        '&:hover': {
+                          borderColor: '#00fff2',
+                          backgroundColor: 'rgba(0, 255, 242, 0.1)',
+                        }
+                      }}
+                    >
+                      选择文件
+                    </Button>
+                  </label>
+                  <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>
+                    支持 PDF、Word 格式，最大 10MB
+                  </Typography>
+
+                  {file && (
+                    <Box sx={{ mt: 2 }}>
+                      <Typography variant="body1" sx={{ color: '#00fff2', mb: 1 }}>
+                        已选择文件: {file.name}
+                      </Typography>
+                      <Button
+                        variant="outlined"
+                        onClick={removeFile}
+                        sx={{
+                          borderColor: 'rgba(255, 0, 0, 0.5)',
+                          color: '#ff4444',
+                          '&:hover': {
+                            borderColor: '#ff4444',
+                            backgroundColor: 'rgba(255, 0, 0, 0.1)',
+                          }
+                        }}
+                      >
+                        移除文件
+                      </Button>
+                    </Box>
+                  )}
+                </Card>
+
+                <Typography variant="h6" gutterBottom sx={{ mt: 4 }}>
+                  或者填写简历信息
+                </Typography>
+                <Box sx={{ mt: 2 }}>
+                  {renderResumeForm()}
+                </Box>
+              </Grid>
+            </Grid>
           </Box>
         );
       case 3:
@@ -578,38 +1105,28 @@ const ResumeEditor = ({ translations }) => {
 
         {getStepContent(activeStep)}
 
-        <Box sx={{ mt: 4, display: 'flex', justifyContent: 'space-between' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 3 }}>
           <Button
-            variant="outlined"
             onClick={handleBack}
-            sx={{
-              borderColor: 'rgba(0, 255, 242, 0.5)',
-              color: '#00fff2',
-              '&:hover': {
-                borderColor: '#00fff2',
-                backgroundColor: 'rgba(0, 255, 242, 0.1)',
-              }
-            }}
+            sx={{ mr: 1 }}
           >
             上一步
           </Button>
           <Button
             variant="contained"
             onClick={handleNext}
-            disabled={loading || (activeStep === 1 && !selectedJob) || (activeStep === 2 && !file && !resumeText.trim())}
-            sx={{
-              backgroundColor: '#00fff2',
-              color: '#020816',
+            disabled={
+              (activeStep === 1 && !selectedJob) ||
+              loading
+            }
+            sx={{ 
+              backgroundColor: '#1976d2',
               '&:hover': {
-                backgroundColor: 'rgba(0, 255, 242, 0.8)',
-              },
-              '&.Mui-disabled': {
-                backgroundColor: 'rgba(0, 255, 242, 0.3)',
-                color: 'rgba(2, 8, 22, 0.5)',
+                backgroundColor: '#1565c0'
               }
             }}
           >
-            {activeStep === steps.length - 1 ? '提交' : '下一步'}
+            下一步
           </Button>
         </Box>
       </Box>
