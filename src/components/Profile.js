@@ -17,7 +17,7 @@ const Profile = ({ translations }) => {
   const fetchUserData = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:8000/profile/', {
+      const response = await axios.get('http://3.144.42.74:8000/profile/', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUserData({ username: response.data.username, email: response.data.email });
@@ -45,7 +45,7 @@ const Profile = ({ translations }) => {
         data.old_password = oldPassword; // 🔥 发送旧密码验证
       }
 
-      const response = await axios.put('http://localhost:8000/profile/', data, {
+      const response = await axios.put('http://3.144.42.74:8000/profile/', data, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

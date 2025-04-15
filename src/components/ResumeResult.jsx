@@ -28,7 +28,7 @@ const ResumeResult = ({ translations }) => {
       //   setLoadingPDF(false);
       //   return;
       // }
-      const response = await axios.post('http://localhost:8000/download_pdf/', formData, {
+      const response = await axios.post('http://3.144.42.74:8000/download_pdf/', formData, {
         headers: {
           // 'Authorization': `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'
@@ -66,7 +66,7 @@ const ResumeResult = ({ translations }) => {
         theme: theme
       });
       
-      const response = await axios.post('http://localhost:8000/download_word/', formData, {
+      const response = await axios.post('http://3.144.42.74:8000/download_word/', formData, {
         headers: {
           // 'Authorization': `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'

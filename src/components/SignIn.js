@@ -13,7 +13,7 @@ const SignIn = ({translations, setIsAuthenticated}) => {
   const handleSignIn = async () => {
     try {
       setError('');
-      const response = await axios.post('http://localhost:8000/login/', { email, password });
+      const response = await axios.post('http://3.144.42.74:8000/login/', { email, password });
 
       if (response.status === 200) {
         localStorage.setItem('token', response.data.token);

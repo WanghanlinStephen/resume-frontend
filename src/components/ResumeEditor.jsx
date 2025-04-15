@@ -684,7 +684,7 @@ const ResumeEditor = ({ translations }) => {
       const interval = setInterval(async () => {
         try {
           console.log(`正在查询任务状态，Task ID: ${taskId}`);
-          const res = await axios.get(`http://localhost:8000/celery-task-status/${taskId}/`, {
+          const res = await axios.get(`http://3.144.42.74:8000/celery-task-status/${taskId}/`, {
             headers: { 
               'Accept': 'application/json'
             },
@@ -795,7 +795,7 @@ const ResumeEditor = ({ translations }) => {
         formData.append('customized_info', customText);
       }
 
-      const response = await axios.post('http://localhost:8000/result/', formData);
+      const response = await axios.post('http://3.144.42.74:8000/result/', formData);
       if (response.data.task_id) {
         pollTaskStatus(response.data.task_id);
       }
