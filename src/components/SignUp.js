@@ -23,7 +23,7 @@ const SignUp = ({ translations,setIsAuthenticated }) => {
       }
 
       // **🔥 发送注册请求**
-      const response = await axios.post(`http://3.144.42.74:8000/register/`, {
+      const response = await axios.post(`https://auto-resume.site/register/`, {
         username,
         email,
         password,
@@ -31,7 +31,7 @@ const SignUp = ({ translations,setIsAuthenticated }) => {
 
       if (response.status === 201) {
         // **✅ 注册成功，自动登录**
-        const loginResponse = await axios.post(`http://3.144.42.74:8000/login/`, {
+        const loginResponse = await axios.post(`https://auto-resume.site/login/`, {
           email,
           password,
         });
