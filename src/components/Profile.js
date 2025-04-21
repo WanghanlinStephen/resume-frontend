@@ -17,7 +17,7 @@ const Profile = ({ translations }) => {
   const fetchUserData = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('https://auto-resume.site/profile/', {
+      const response = await axios.get('https://www.auto-resume.site/profile/', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUserData({ username: response.data.username, email: response.data.email });
@@ -45,7 +45,7 @@ const Profile = ({ translations }) => {
         data.old_password = oldPassword; // 🔥 发送旧密码验证
       }
 
-      const response = await axios.put('https://auto-resume.site/profile/', data, {
+      const response = await axios.put('https://www.auto-resume.site/profile/', data, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

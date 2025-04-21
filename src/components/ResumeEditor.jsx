@@ -684,7 +684,7 @@ const ResumeEditor = ({ translations }) => {
       const interval = setInterval(async () => {
         try {
           console.log(`正在查询任务状态，Task ID: ${taskId}`);
-          const res = await axios.get(`https://auto-resume.site/celery-task-status/${taskId}/`, {
+          const res = await axios.get(`https://www.auto-resume.site/celery-task-status/${taskId}/`, {
             headers: { 
               'Accept': 'application/json'
             },
@@ -795,7 +795,7 @@ const ResumeEditor = ({ translations }) => {
         formData.append('customized_info', customText);
       }
 
-      const response = await axios.post('https://auto-resume.site/result/', formData);
+      const response = await axios.post('https://www.auto-resume.site/result/', formData);
       if (response.data.task_id) {
         pollTaskStatus(response.data.task_id);
       }

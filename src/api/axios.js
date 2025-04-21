@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://auto-resume.site/',
+  baseURL: 'https://www.auto-resume.site/',
   timeout: 30000,
   headers: {
     'Accept': 'application/json',

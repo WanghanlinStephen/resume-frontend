@@ -13,7 +13,7 @@ const SignIn = ({translations, setIsAuthenticated}) => {
   const handleSignIn = async () => {
     try {
       setError('');
-      const response = await axios.post('https://auto-resume.site/login/', { email, password });
+      const response = await axios.post('https://www.auto-resume.site/login/', { email, password });
 
       if (response.status === 200) {
         localStorage.setItem('token', response.data.token);
