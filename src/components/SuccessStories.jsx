@@ -17,7 +17,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 
 
-const offerImages = [
+const interviewImages = [
   { id: 1, imageUrl: 'https://auto-resume-storage.s3.us-east-2.amazonaws.com/offers/1.png' },
   { id: 2, imageUrl: 'https://auto-resume-storage.s3.us-east-2.amazonaws.com/offers/2.png' },
   { id: 3, imageUrl: 'https://auto-resume-storage.s3.us-east-2.amazonaws.com/offers/3.png' },
@@ -47,6 +47,29 @@ const offerImages = [
   { id: 27, imageUrl: 'https://auto-resume-storage.s3.us-east-2.amazonaws.com/offers/27.png' },
   { id: 28, imageUrl: 'https://auto-resume-storage.s3.us-east-2.amazonaws.com/offers/28.png' },
 ];
+
+
+
+const offerImages = [
+  { id: 1, imageUrl: 'https://auto-resume-storage.s3.us-east-2.amazonaws.com/offer_letters/1.png' },
+  { id: 2, imageUrl: 'https://auto-resume-storage.s3.us-east-2.amazonaws.com/offer_letters/2.png' },
+  { id: 3, imageUrl: 'https://auto-resume-storage.s3.us-east-2.amazonaws.com/offer_letters/3.png' },
+  { id: 4, imageUrl: 'https://auto-resume-storage.s3.us-east-2.amazonaws.com/offer_letters/4.png' },
+  { id: 5, imageUrl: 'https://auto-resume-storage.s3.us-east-2.amazonaws.com/offer_letters/5.png' },
+  { id: 6, imageUrl: 'https://auto-resume-storage.s3.us-east-2.amazonaws.com/offer_letters/6.png' },
+  { id: 7, imageUrl: 'https://auto-resume-storage.s3.us-east-2.amazonaws.com/offer_letters/7.png' },
+  { id: 8, imageUrl: 'https://auto-resume-storage.s3.us-east-2.amazonaws.com/offer_letters/8.png' },
+  { id: 9, imageUrl: 'https://auto-resume-storage.s3.us-east-2.amazonaws.com/offer_letters/9.png' },
+  { id: 10, imageUrl: 'https://auto-resume-storage.s3.us-east-2.amazonaws.com/offer_letters/10.png' },
+  { id: 11, imageUrl: 'https://auto-resume-storage.s3.us-east-2.amazonaws.com/offer_letters/11.png' },
+  { id: 12, imageUrl: 'https://auto-resume-storage.s3.us-east-2.amazonaws.com/offer_letters/12.png' },
+  { id: 13, imageUrl: 'https://auto-resume-storage.s3.us-east-2.amazonaws.com/offer_letters/13.png' },
+  { id: 14, imageUrl: 'https://auto-resume-storage.s3.us-east-2.amazonaws.com/offer_letters/14.png' },
+  { id: 15, imageUrl: 'https://auto-resume-storage.s3.us-east-2.amazonaws.com/offer_letters/15.png' },
+  { id: 16, imageUrl: 'https://auto-resume-storage.s3.us-east-2.amazonaws.com/offer_letters/16.png' },
+];
+
+
 
 const SuccessStories = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -93,7 +116,7 @@ const SuccessStories = () => {
           }}
         >
           <Grid container spacing={3}>
-            {offerImages.map((item) => (
+            {interviewImages.map((item) => (
               <Grid item xs={12} sm={6} md={4} key={item.id}>
                 <Card 
                   sx={{ 

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Box, Typography, Container, Tabs, Tab, Grid, Card, CardContent } from '@mui/material';
+import { Box, Typography, Container, Tabs, Tab } from '@mui/material';
 
 const Flow = () => {
   const [value, setValue] = React.useState(0);
+  const videoLink = 'https://auto-resume-storage.s3.us-east-2.amazonaws.com/videos/instructions.mov';
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -11,7 +12,6 @@ const Flow = () => {
   return (
     <Container maxWidth="lg">
       <Box sx={{ mt: 15, mb: 10, textAlign: 'center' }}>
-
         <Tabs
           value={value}
           onChange={handleChange}
@@ -29,62 +29,43 @@ const Flow = () => {
             },
           }}
         >
-          <Tab label="简历优化" />
-          <Tab label="智能分析" />
-          <Tab label="导出预览" />
+          <Tab label="演示视频" />
         </Tabs>
 
-        <Box sx={{ position: 'relative', width: '100%', pt: '56.25%' }}>  {/* 16:9 宽高比 */}
-          <Box
-            sx={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              border: '2px dashed rgba(0, 255, 242, 0.3)',
-              borderRadius: '8px',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              backgroundColor: 'rgba(2, 8, 22, 0.6)',
-              backdropFilter: 'blur(10px)',
-            }}
-          >
-            {value === 0 && (
-              <Typography variant="h6" sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>
-                简历优化演示视频
-              </Typography>
-            )}
-            {value === 1 && (
-              <Typography variant="h6" sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>
-                智能分析演示视频
-              </Typography>
-            )}
-            {value === 2 && (
-              <Typography variant="h6" sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>
-                导出预览演示视频
-              </Typography>
-            )}
-          </Box>
+        <Box sx={{ position: 'relative', width: '100%', pt: '56.25%' }}>
+          {value === 0 && (
+            <Box
+              component="video"
+              src={videoLink}
+              controls
+              poster=""  // 可选：放封面图链接
+              sx={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                borderRadius: 2,
+                boxShadow: 3,
+              }}
+            />
+          )}
         </Box>
 
-        <Typography 
-          variant="body1" 
-          sx={{ 
+        <Typography
+          variant="body1"
+          sx={{
             mt: 4,
             color: 'rgba(255, 255, 255, 0.7)',
             maxWidth: '800px',
-            margin: '0 auto'
+            margin: '0 auto',
           }}
         >
-          {value === 0 && "通过AI技术，智能优化您的简历内容，突出核心优势，提升简历质量。"}
-          {value === 1 && "深度分析简历各个部分，提供专业的改进建议，帮助您打造完美简历。"}
-          {value === 2 && "支持多种格式导出，随时预览效果，确保简历展示效果。"}
+          通过这段演示视频，你可以了解如何使用 AI 自动优化简历内容，一键提升投递命中率。
         </Typography>
       </Box>
     </Container>
   );
 };
 
-export default Flow; 
+export default Flow;
