@@ -56,7 +56,7 @@ const Navbar = ({ translations, isAuthenticated, setIsAuthenticated }) => {
       sx={{ 
         background: 'rgba(2, 8, 22, 0.95)',
         backdropFilter: 'blur(10px)',
-        borderBottom: '1px solid rgba(0, 255, 242, 0.3)'
+        borderBottom: '1px solid rgba(255, 107, 53, 0.3)'
       }}
     >
       <Container maxWidth="lg">
@@ -68,16 +68,16 @@ const Navbar = ({ translations, isAuthenticated, setIsAuthenticated }) => {
             to="/"
             sx={{
               fontWeight: 700,
-              color: '#00fff2',
+              color: '#FF6B35',
               textDecoration: 'none',
               display: 'flex',
               alignItems: 'center',
               '&:hover': {
-                color: '#00fff2',
+                color: '#FF6B35',
               }
             }}
           >
-            一岗一简
+            校招王中王
           </Typography>
 
           {/* Mobile Menu */}
@@ -88,7 +88,7 @@ const Navbar = ({ translations, isAuthenticated, setIsAuthenticated }) => {
                 color="inherit"
                 aria-label="menu"
                 onClick={handleMenu}
-                sx={{ color: '#00fff2' }}
+                sx={{ color: '#FF6B35' }}
               >
                 <MenuIcon />
               </IconButton>
@@ -100,7 +100,7 @@ const Navbar = ({ translations, isAuthenticated, setIsAuthenticated }) => {
                   sx: {
                     backgroundColor: 'rgba(2, 8, 22, 0.95)',
                     backdropFilter: 'blur(10px)',
-                    border: '1px solid rgba(0, 255, 242, 0.3)',
+                    border: '1px solid rgba(255, 107, 53, 0.3)',
                   }
                 }}
               >
@@ -111,10 +111,10 @@ const Navbar = ({ translations, isAuthenticated, setIsAuthenticated }) => {
                     to={item.path}
                     onClick={handleClose}
                     sx={{
-                      color: activePath === item.path ? '#00fff2' : 'rgba(255, 255, 255, 0.9)',
-                      backgroundColor: activePath === item.path ? 'rgba(0, 255, 242, 0.1)' : 'transparent',
+                      color: activePath === item.path ? '#FF6B35' : 'rgba(255, 255, 255, 0.9)',
+                      backgroundColor: activePath === item.path ? 'rgba(255, 107, 53, 0.1)' : 'transparent',
                       '&:hover': {
-                        backgroundColor: 'rgba(0, 255, 242, 0.1)',
+                        backgroundColor: 'rgba(255, 107, 53, 0.1)',
                       }
                     }}
                   >
@@ -133,15 +133,15 @@ const Navbar = ({ translations, isAuthenticated, setIsAuthenticated }) => {
                   to={item.path}
                   variant={activePath === item.path ? "contained" : "text"}
                   sx={activePath === item.path ? {
-                    backgroundColor: '#00fff2',
+                    backgroundColor: '#FF6B35',
                     color: '#020816',
                     '&:hover': {
-                      backgroundColor: 'rgba(0, 255, 242, 0.8)',
+                      backgroundColor: 'rgba(255, 107, 53, 0.8)',
                     }
                   } : {
                     color: 'rgba(255, 255, 255, 0.9)',
                     '&:hover': {
-                      color: '#00fff2',
+                      color: '#FF6B35',
                     }
                   }}
                 >
@@ -158,13 +158,13 @@ const Navbar = ({ translations, isAuthenticated, setIsAuthenticated }) => {
                 <IconButton
                   onClick={handleMenu}
                   sx={{
-                    color: '#00fff2',
+                    color: '#FF6B35',
                     '&:hover': {
-                      backgroundColor: 'rgba(0, 255, 242, 0.1)',
+                      backgroundColor: 'rgba(255, 107, 53, 0.1)',
                     }
                   }}
                 >
-                  <Avatar sx={{ bgcolor: '#00fff2', color: '#020816' }}>
+                  <Avatar sx={{ bgcolor: '#FF6B35', color: '#020816' }}>
                     {localStorage.getItem('username')?.[0]?.toUpperCase() || 'U'}
                   </Avatar>
                 </IconButton>
@@ -176,7 +176,7 @@ const Navbar = ({ translations, isAuthenticated, setIsAuthenticated }) => {
                     sx: {
                       backgroundColor: 'rgba(2, 8, 22, 0.95)',
                       backdropFilter: 'blur(10px)',
-                      border: '1px solid rgba(0, 255, 242, 0.3)',
+                      border: '1px solid rgba(255, 107, 53, 0.3)',
                     }
                   }}
                 >
@@ -187,7 +187,7 @@ const Navbar = ({ translations, isAuthenticated, setIsAuthenticated }) => {
                     sx={{
                       color: 'rgba(255, 255, 255, 0.9)',
                       '&:hover': {
-                        backgroundColor: 'rgba(0, 255, 242, 0.1)',
+                        backgroundColor: 'rgba(255, 107, 53, 0.1)',
                       }
                     }}
                   >
@@ -200,7 +200,7 @@ const Navbar = ({ translations, isAuthenticated, setIsAuthenticated }) => {
                     sx={{
                       color: 'rgba(255, 255, 255, 0.9)',
                       '&:hover': {
-                        backgroundColor: 'rgba(0, 255, 242, 0.1)',
+                        backgroundColor: 'rgba(255, 107, 53, 0.1)',
                       }
                     }}
                   >
@@ -211,7 +211,7 @@ const Navbar = ({ translations, isAuthenticated, setIsAuthenticated }) => {
                     sx={{
                       color: 'rgba(255, 255, 255, 0.9)',
                       '&:hover': {
-                        backgroundColor: 'rgba(0, 255, 242, 0.1)',
+                        backgroundColor: 'rgba(255, 107, 53, 0.1)',
                       }
                     }}
                   >
@@ -221,47 +221,7 @@ const Navbar = ({ translations, isAuthenticated, setIsAuthenticated }) => {
               </>
             ) : (
               <>
-                <Button
-                  variant={activePath === '/signin' ? "contained" : "outlined"}
-                  component={RouterLink}
-                  to="/signin"
-                  sx={activePath === '/signin' ? {
-                    backgroundColor: '#00fff2',
-                    color: '#020816',
-                    '&:hover': {
-                      backgroundColor: 'rgba(0, 255, 242, 0.8)',
-                    }
-                  } : {
-                    borderColor: 'rgba(0, 255, 242, 0.5)',
-                    color: '#00fff2',
-                    '&:hover': {
-                      borderColor: '#00fff2',
-                      backgroundColor: 'rgba(0, 255, 242, 0.1)',
-                    }
-                  }}
-                >
-                  登录
-                </Button>
-                <Button
-                  variant={activePath === '/signup' ? "contained" : "contained"}
-                  component={RouterLink}
-                  to="/signup"
-                  sx={activePath === '/signup' ? {
-                    backgroundColor: 'rgba(0, 255, 242, 0.8)',
-                    color: '#020816',
-                    '&:hover': {
-                      backgroundColor: '#00fff2',
-                    }
-                  } : {
-                    backgroundColor: '#00fff2',
-                    color: '#020816',
-                    '&:hover': {
-                      backgroundColor: 'rgba(0, 255, 242, 0.8)',
-                    }
-                  }}
-                >
-                  注册
-                </Button>
+                {/* 登录注册按钮已隐藏 */}
               </>
             )}
           </Box>

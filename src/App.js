@@ -23,10 +23,10 @@ const createAppTheme = (mode) =>
     palette: {
       mode: mode,
       primary: {
-        main: '#00fff2', // 霓虹蓝色
+        main: '#FF6B35', // 橙红色
       },
       secondary: {
-        main: '#08f', // 明亮的蓝色
+        main: '#FF8C5A', // 浅橙色
       },
       background: {
         default: '#020816',
@@ -44,14 +44,14 @@ const createAppTheme = (mode) =>
             padding: '10px 20px',
             fontSize: '1rem',
             textTransform: 'none',
-            background: 'linear-gradient(45deg, rgba(0, 255, 242, 0.1) 30%, rgba(0, 136, 255, 0.1) 90%)',
-            border: '1px solid rgba(0, 255, 242, 0.3)',
-            color: '#00fff2',
-            boxShadow: '0 0 5px rgba(0, 255, 242, 0.3)',
+            background: 'linear-gradient(45deg, rgba(255, 107, 53, 0.1) 30%, rgba(255, 140, 90, 0.1) 90%)',
+            border: '1px solid rgba(255, 107, 53, 0.3)',
+            color: '#FF6B35',
+            boxShadow: '0 0 5px rgba(255, 107, 53, 0.3)',
             '&:hover': {
-              background: 'linear-gradient(45deg, rgba(0, 255, 242, 0.2) 30%, rgba(0, 136, 255, 0.2) 90%)',
-              boxShadow: '0 0 10px rgba(0, 255, 242, 0.5)',
-              border: '1px solid rgba(0, 255, 242, 0.5)',
+              background: 'linear-gradient(45deg, rgba(255, 107, 53, 0.2) 30%, rgba(255, 140, 90, 0.2) 90%)',
+              boxShadow: '0 0 10px rgba(255, 107, 53, 0.5)',
+              border: '1px solid rgba(255, 107, 53, 0.5)',
             },
           },
         },
@@ -61,8 +61,8 @@ const createAppTheme = (mode) =>
           root: {
             backgroundImage: 'linear-gradient(135deg, rgba(2, 8, 22, 0.95) 0%, rgba(4, 16, 51, 0.95) 100%)',
             backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(0, 255, 242, 0.1)',
-            boxShadow: '0 0 20px rgba(0, 255, 242, 0.1)',
+            border: '1px solid rgba(255, 107, 53, 0.1)',
+            boxShadow: '0 0 20px rgba(255, 107, 53, 0.1)',
           },
         },
       },
@@ -71,8 +71,8 @@ const createAppTheme = (mode) =>
           root: {
             background: 'rgba(2, 8, 22, 0.8)',
             backdropFilter: 'blur(10px)',
-            borderBottom: '1px solid rgba(0, 255, 242, 0.1)',
-            boxShadow: '0 0 20px rgba(0, 255, 242, 0.1)',
+            borderBottom: '1px solid rgba(255, 107, 53, 0.1)',
+            boxShadow: '0 0 20px rgba(255, 107, 53, 0.1)',
           },
         },
       },
@@ -81,8 +81,8 @@ const createAppTheme = (mode) =>
 
 const translations = {
   zh: {
-    homeTitle: '每一个岗位，都该有一份专属简历',
-    homeDescription: '一键生成针对性简历，让每次投递都是量身定制',
+    homeTitle: '校招信息表十免费简历修改=王中王',
+    homeDescription: '+客服微信享受免费简历修改',
     startButton: '立即优化简历',
     switchLanguage: '切换到 English',
     editorTitle: '简历智能优化',

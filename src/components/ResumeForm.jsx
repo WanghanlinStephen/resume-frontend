@@ -594,10 +594,10 @@ const ResumeForm = ({ onFormChange }) => {
             mb: 3,
             background: 'rgba(2, 8, 22, 0.95)',
             backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(0, 255, 242, 0.3)',
+            border: '1px solid rgba(255, 107, 53, 0.3)',
           }}
         >
-          <Typography variant="h6" gutterBottom sx={{ color: '#00fff2' }}>
+          <Typography variant="h6" gutterBottom sx={{ color: '#FF6B35' }}>
             专业技能 <span style={{ color: 'red' }}>*</span>
           </Typography>
           <TextField
@@ -612,15 +612,15 @@ const ResumeForm = ({ onFormChange }) => {
             sx={{
               '& .MuiOutlinedInput-root': {
                 color: 'rgba(255, 255, 255, 0.9)',
-                backgroundColor: 'rgba(0, 255, 242, 0.05)',
+                backgroundColor: 'rgba(255, 107, 53, 0.05)',
                 '& fieldset': {
-                  borderColor: 'rgba(0, 255, 242, 0.3)',
+                  borderColor: 'rgba(255, 107, 53, 0.3)',
                 },
                 '&:hover fieldset': {
-                  borderColor: 'rgba(0, 255, 242, 0.5)',
+                  borderColor: 'rgba(255, 107, 53, 0.5)',
                 },
                 '&.Mui-focused fieldset': {
-                  borderColor: '#00fff2',
+                  borderColor: '#FF6B35',
                 },
               },
             }}
@@ -634,7 +634,7 @@ const ResumeForm = ({ onFormChange }) => {
             mb: 3,
             background: 'rgba(2, 8, 22, 0.95)',
             backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(0, 255, 242, 0.3)',
+            border: '1px solid rgba(255, 107, 53, 0.3)',
           }}
         >
           <Typography variant="h6" gutterBottom sx={{ color: '#00fff2' }}>

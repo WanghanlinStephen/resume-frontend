@@ -76,7 +76,7 @@ const SuccessStories = () => {
 
   return (
     <Container maxWidth="md" sx={{ mt: 8, mb: 8 }}>
-      <Typography variant="h4" gutterBottom sx={{ color: '#00fff2', textAlign: 'center', mb: 4 }}>
+      <Typography variant="h4" gutterBottom sx={{ color: '#FF6B35', textAlign: 'center', mb: 4 }}>
         成功案例
       </Typography>
       
@@ -91,7 +91,7 @@ const SuccessStories = () => {
 
       {/* 第一个 Offer 图片展示区域 */}
       <Box sx={{ mt: 8 }}>
-        <Typography variant="h5" gutterBottom sx={{ color: '#00fff2', textAlign: 'center', mb: 4 }}>
+        <Typography variant="h5" gutterBottom sx={{ color: '#FF6B35', textAlign: 'center', mb: 4 }}>
           面试通知 | 未完全统计
         </Typography>
         <Box 
@@ -103,14 +103,14 @@ const SuccessStories = () => {
               width: '8px',
             },
             '&::-webkit-scrollbar-track': {
-              background: 'rgba(0, 255, 242, 0.05)',
+              background: 'rgba(255, 107, 53, 0.05)',
               borderRadius: '4px',
             },
             '&::-webkit-scrollbar-thumb': {
-              background: 'rgba(0, 255, 242, 0.3)',
+              background: 'rgba(255, 107, 53, 0.3)',
               borderRadius: '4px',
               '&:hover': {
-                background: 'rgba(0, 255, 242, 0.5)',
+                background: 'rgba(255, 107, 53, 0.5)',
               },
             },
           }}
@@ -123,13 +123,13 @@ const SuccessStories = () => {
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
-                    background: 'rgba(0, 255, 242, 0.05)',
-                    border: '1px solid rgba(0, 255, 242, 0.3)',
+                    background: 'rgba(255, 107, 53, 0.05)',
+                    border: '1px solid rgba(255, 107, 53, 0.3)',
                     transition: 'all 0.3s ease',
                     cursor: 'pointer',
                     '&:hover': {
-                      border: '1px solid rgba(0, 255, 242, 0.8)',
-                      boxShadow: '0 0 15px rgba(0, 255, 242, 0.5)',
+                      border: '1px solid rgba(255, 107, 53, 0.8)',
+                      boxShadow: '0 0 15px rgba(255, 107, 53, 0.5)',
                       transform: 'translateY(-5px)',
                     },
                   }}
@@ -156,7 +156,7 @@ const SuccessStories = () => {
 
       {/* 第二个 Offer 图片展示区域 */}
       <Box sx={{ mt: 8 }}>
-        <Typography variant="h5" gutterBottom sx={{ color: '#00fff2', textAlign: 'center', mb: 4 }}>
+        <Typography variant="h5" gutterBottom sx={{ color: '#FF6B35', textAlign: 'center', mb: 4 }}>
           Offer 展示 | 未完全统计
         </Typography>
         <Box 
@@ -168,14 +168,14 @@ const SuccessStories = () => {
               width: '8px',
             },
             '&::-webkit-scrollbar-track': {
-              background: 'rgba(0, 255, 242, 0.05)',
+              background: 'rgba(255, 107, 53, 0.05)',
               borderRadius: '4px',
             },
             '&::-webkit-scrollbar-thumb': {
-              background: 'rgba(0, 255, 242, 0.3)',
+              background: 'rgba(255, 107, 53, 0.3)',
               borderRadius: '4px',
               '&:hover': {
-                background: 'rgba(0, 255, 242, 0.5)',
+                background: 'rgba(255, 107, 53, 0.5)',
               },
             },
           }}
@@ -188,13 +188,13 @@ const SuccessStories = () => {
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
-                    background: 'rgba(0, 255, 242, 0.05)',
-                    border: '1px solid rgba(0, 255, 242, 0.3)',
+                    background: 'rgba(255, 107, 53, 0.05)',
+                    border: '1px solid rgba(255, 107, 53, 0.3)',
                     transition: 'all 0.3s ease',
                     cursor: 'pointer',
                     '&:hover': {
-                      border: '1px solid rgba(0, 255, 242, 0.8)',
-                      boxShadow: '0 0 15px rgba(0, 255, 242, 0.5)',
+                      border: '1px solid rgba(255, 107, 53, 0.8)',
+                      boxShadow: '0 0 15px rgba(255, 107, 53, 0.5)',
                       transform: 'translateY(-5px)',
                     },
                   }}
@@ -229,7 +229,7 @@ const SuccessStories = () => {
           sx: {
             background: 'rgba(2, 8, 22, 0.95)',
             backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(0, 255, 242, 0.3)',
+            border: '1px solid rgba(255, 107, 53, 0.3)',
           }
         }}
       >

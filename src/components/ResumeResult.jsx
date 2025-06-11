@@ -1,24 +1,31 @@
-import React, { useState } from 'react';
-import { Container, Typography, Button, Box, CircularProgress } from '@mui/material';
+import React, { useState, useRef } from 'react';
+import { Container, Typography, Button, Box, CircularProgress, Paper, Divider } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 const ResumeResult = ({ translations }) => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const previewUrl = queryParams.get('preview_html_url'); // 🔥 预览 HTML URL
+  const previewUrl = queryParams.get('preview_html_url'); // 现在这是图片 URL
   const htmlUrl = queryParams.get('html_url'); // 🔥 真实 HTML 文件 URL
   const jsonResume = queryParams.get('json_resume');
   const theme = queryParams.get('theme');
-  console.log(previewUrl)
-  console.log(htmlUrl)
+  const qrCodeRef = useRef(null);
+  
   const [loadingPDF, setLoadingPDF] = useState(false);
   const [loadingWord, setLoadingWord] = useState(false);
+  const [showQRCode, setShowQRCode] = useState(false);
 
   // **🔥 处理 PDF 下载**
   const handleDownloadPDF = async () => {
     try {
       setLoadingPDF(true);
+      // 模拟下载延迟
+      setTimeout(() => {
+        setLoadingPDF(false);
+        alert('PDF 已生成，但当前为前端模拟模式');
+      }, 2000);
+      /*
       const formData = new FormData();
       formData.append('json_resume', JSON.stringify(jsonResume));
       formData.append('theme', theme);
@@ -41,6 +48,7 @@ const ResumeResult = ({ translations }) => {
       } else {
         alert('下载失败，请稍后重试');
       }
+      */
     } catch (err) {
       console.error('PDF 下载失败:', err);
       alert('PDF 生成失败，请检查网络');
@@ -52,6 +60,12 @@ const ResumeResult = ({ translations }) => {
   const handleDownloadWord = async () => {
     try {
       setLoadingWord(true);
+      // 模拟下载延迟
+      setTimeout(() => {
+        setLoadingWord(false);
+        alert('Word 文档已生成，但当前为前端模拟模式');
+      }, 2000);
+      /*
       const formData = new FormData();
       formData.append('json_resume', JSON.stringify(jsonResume));
       formData.append('theme', theme);
@@ -87,6 +101,7 @@ const ResumeResult = ({ translations }) => {
         console.error('Word URL 不存在:', response.data);
         alert('下载失败，请稍后重试');
       }
+      */
     } catch (err) {
       console.error('Word 下载失败:', err);
       console.error('错误详情:', {
@@ -99,6 +114,27 @@ const ResumeResult = ({ translations }) => {
     }
   };
 
+  // 处理下载按钮点击，显示二维码区域
+  const handleDownloadClick = (type) => {
+    if (type === 'pdf') {
+      setLoadingPDF(true);
+    } else {
+      setLoadingWord(true);
+    }
+    
+    // 短暂延迟后显示二维码并滚动到二维码区域
+    setTimeout(() => {
+      setShowQRCode(true);
+      setLoadingPDF(false);
+      setLoadingWord(false);
+      
+      // 滚动到二维码区域
+      if (qrCodeRef.current) {
+        qrCodeRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 1000);
+  };
+
   return (
     <Container maxWidth="md" sx={{ mt: 4 }}>
       <Box sx={{ mb: 2 }}>
@@ -106,36 +142,147 @@ const ResumeResult = ({ translations }) => {
           variant="h4" 
           gutterBottom 
           sx={{ 
-            color: '#00fff2',
+            color: '#FF6B35',
             textAlign: 'center',
             mb: 2,
             fontWeight: 700,
-            textShadow: '0 0 10px rgba(0, 255, 242, 0.3)',
+            textShadow: '0 0 10px rgba(255, 107, 53, 0.3)',
           }}
         >
-          {translations.resultTitle}
+          {translations?.resultTitle || '您的简历已生成'}
         </Typography>
       </Box>
 
-      {/* 🔥 直接加载后端返回的 HTML 文件 */}
-      <Box component="iframe" src={previewUrl} width="100%" height="800px" title="简历预览" sx={{ border: 'none' }} />
+      {/* 简历预览图片 */}
+      <Box 
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          width: '100%',
+          border: '1px solid rgba(255, 107, 53, 0.3)',
+          borderRadius: '8px',
+          padding: '20px',
+          backgroundColor: 'rgba(2, 8, 22, 0.8)',
+          boxShadow: '0 0 20px rgba(255, 107, 53, 0.1)',
+          position: 'relative',
+        }}
+      >
+        <Box 
+          component="img" 
+          src={previewUrl} 
+          alt="生成的简历" 
+          sx={{ 
+            maxWidth: '100%',
+            height: 'auto',
+            maxHeight: '800px'
+          }} 
+        />
+        
+        {/* 中间的二维码模块，无论是否显示，都将其放在DOM中以便定位 */}
+        <Box 
+          ref={qrCodeRef}
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            display: showQRCode ? 'flex' : 'none',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'rgba(2, 8, 22, 0.95)',
+            padding: '30px',
+            borderRadius: '12px',
+            border: '2px solid #FF6B35',
+            boxShadow: '0 0 30px rgba(255, 107, 53, 0.3)',
+            width: '80%',
+            maxWidth: '400px',
+            zIndex: 10,
+          }}
+        >
+          <Typography 
+            variant="h5" 
+            sx={{ 
+              color: '#FF6B35', 
+              mb: 2, 
+              textAlign: 'center',
+              fontWeight: 600
+            }}
+          >
+            校招王中王
+          </Typography>
+          
+          <Divider sx={{ width: '100%', borderColor: 'rgba(255, 107, 53, 0.3)', my: 2 }} />
+          
+          <Box 
+            component="img" 
+            src="https://auto-resume-storage.s3.us-east-2.amazonaws.com/test.jpg" 
+            alt="客服二维码" 
+            sx={{ 
+              width: '200px',
+              height: '200px',
+              mb: 2,
+              borderRadius: '8px',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+            }} 
+          />
+          
+          <Typography 
+            variant="body1" 
+            sx={{ 
+              color: 'white', 
+              textAlign: 'center',
+              mb: 2
+            }}
+          >
+            +微信室服辛受员简历修改
+          </Typography>
+          
+          <Typography 
+            variant="body2" 
+            sx={{ 
+              color: 'rgba(255, 255, 255, 0.7)', 
+              textAlign: 'center',
+              fontSize: '0.9rem'
+            }}
+          >
+            添加客服领取校招内部资料，助您快速通过简历筛选
+          </Typography>
+          
+          <Button
+            variant="outlined"
+            onClick={() => setShowQRCode(false)}
+            sx={{
+              mt: 3,
+              borderColor: 'rgba(255, 107, 53, 0.5)',
+              color: '#FF6B35',
+              '&:hover': {
+                borderColor: '#FF6B35',
+                backgroundColor: 'rgba(255, 107, 53, 0.1)',
+              }
+            }}
+          >
+            返回查看简历
+          </Button>
+        </Box>
+      </Box>
 
       <Box mt={4} display="flex" justifyContent="center" gap={2}>
         <Button component={Link} to="/editor" variant="contained" color="primary">
-          {translations.returnToEdit}
+          {translations?.returnToEdit || '返回编辑'}
         </Button>
 
         {/* PDF 下载按钮 */}
         <Button
           variant="contained"
           color="secondary"
-          onClick={handleDownloadPDF}
+          onClick={() => handleDownloadClick('pdf')}
           disabled={loadingPDF}
           sx={{
-            backgroundColor: '#00fff2',
+            backgroundColor: '#FF6B35',
             color: '#020816',
             '&:hover': {
-              backgroundColor: 'rgba(0, 255, 242, 0.8)',
+              backgroundColor: 'rgba(255, 107, 53, 0.8)',
             },
           }}
         >
@@ -146,13 +293,13 @@ const ResumeResult = ({ translations }) => {
         <Button
           variant="contained"
           color="secondary"
-          onClick={handleDownloadWord}
+          onClick={() => handleDownloadClick('word')}
           disabled={loadingWord}
           sx={{
-            backgroundColor: '#00fff2',
+            backgroundColor: '#FF6B35',
             color: '#020816',
             '&:hover': {
-              backgroundColor: 'rgba(0, 255, 242, 0.8)',
+              backgroundColor: 'rgba(255, 107, 53, 0.8)',
             },
           }}
         >

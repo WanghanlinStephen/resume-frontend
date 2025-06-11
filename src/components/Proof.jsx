@@ -12,9 +12,9 @@ const Proof = () => {
             align="center" 
             sx={{ 
               mb: 6,
-              color: '#00fff2',
+              color: '#FF6B35',
               fontWeight: 700,
-              textShadow: '0 0 10px rgba(0, 255, 242, 0.3)',
+              textShadow: '0 0 10px rgba(255, 107, 53, 0.3)',
             }}
           >
             为什么选择我们
@@ -53,7 +53,7 @@ const Proof = () => {
             align="center" 
             sx={{ 
               mb: 6,
-              color: '#00fff2',
+              color: '#FF6B35',
               fontWeight: 600,
             }}
           >
@@ -74,8 +74,8 @@ const Proof = () => {
                 p: 3,
                 backgroundColor: 'rgba(2, 8, 22, 0.95)',
                 borderRadius: 2,
-                border: '1px solid rgba(0, 255, 242, 0.3)',
-                boxShadow: '0 0 20px rgba(0, 255, 242, 0.2)',
+                border: '1px solid rgba(255, 107, 53, 0.3)',
+                boxShadow: '0 0 20px rgba(255, 107, 53, 0.2)',
               }}
             >
               <Typography 
@@ -83,7 +83,7 @@ const Proof = () => {
                 align="center" 
                 sx={{ 
                   mb: 2,
-                  color: '#00fff2',
+                  color: '#FF6B35',
                 }}
               >
                 智能简历生成
@@ -105,8 +105,8 @@ const Proof = () => {
                 p: 3,
                 backgroundColor: 'rgba(2, 8, 22, 0.95)',
                 borderRadius: 2,
-                border: '1px solid rgba(0, 255, 242, 0.3)',
-                boxShadow: '0 0 20px rgba(0, 255, 242, 0.2)',
+                border: '1px solid rgba(255, 107, 53, 0.3)',
+                boxShadow: '0 0 20px rgba(255, 107, 53, 0.2)',
               }}
             >
               <Typography 
@@ -114,10 +114,10 @@ const Proof = () => {
                 align="center" 
                 sx={{ 
                   mb: 2,
-                  color: '#00fff2',
+                  color: '#FF6B35',
                 }}
               >
-                一岗一简
+                校招王中王
               </Typography>
               <Typography 
                 variant="body1" 
@@ -126,8 +126,7 @@ const Proof = () => {
                   color: 'rgba(255, 255, 255, 0.8)',
                 }}
               >
-                每一个岗位都有不同需求，通过智能解析JD，自动生成与之高度匹配的简历。
-                每一投，都是精准命中。
+                校招信息表十免费简历修改=王中王，添加客服微信免费获取简历修改。
               </Typography>
             </Box>
 
@@ -137,8 +136,8 @@ const Proof = () => {
                 p: 3,
                 backgroundColor: 'rgba(2, 8, 22, 0.95)',
                 borderRadius: 2,
-                border: '1px solid rgba(0, 255, 242, 0.3)',
-                boxShadow: '0 0 20px rgba(0, 255, 242, 0.2)',
+                border: '1px solid rgba(255, 107, 53, 0.3)',
+                boxShadow: '0 0 20px rgba(255, 107, 53, 0.2)',
               }}
             >
               <Typography 
@@ -146,7 +145,7 @@ const Proof = () => {
                 align="center" 
                 sx={{ 
                   mb: 2,
-                  color: '#00fff2',
+                  color: '#FF6B35',
                 }}
               >
                 深度优化分析

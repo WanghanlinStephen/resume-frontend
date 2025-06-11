@@ -77,7 +77,7 @@ const steps = [
 const UserGuide = () => {
   return (
     <Container maxWidth="md" sx={{ mt: 8, mb: 8 }}>
-      <Typography variant="h4" gutterBottom sx={{ color: '#00fff2', textAlign: 'center', mb: 4 }}>
+      <Typography variant="h4" gutterBottom sx={{ color: '#FF6B35', textAlign: 'center', mb: 4 }}>
         使用指南
       </Typography>
 
@@ -92,15 +92,15 @@ const UserGuide = () => {
 
       <Stepper orientation="vertical" sx={{ 
         '& .MuiStepLabel-label': { color: 'rgba(255, 255, 255, 0.9)' },
-        '& .MuiStepLabel-label.Mui-active': { color: '#00fff2' },
-        '& .MuiStepIcon-root': { color: 'rgba(0, 255, 242, 0.5)' },
-        '& .MuiStepIcon-root.Mui-active': { color: '#00fff2' },
-        '& .MuiStepConnector-line': { borderColor: 'rgba(0, 255, 242, 0.2)' }
+        '& .MuiStepLabel-label.Mui-active': { color: '#FF6B35' },
+        '& .MuiStepIcon-root': { color: 'rgba(255, 255, 255, 0.4)' },
+        '& .MuiStepIcon-root.Mui-active': { color: '#FF6B35' },
+        '& .MuiStepConnector-line': { borderColor: 'rgba(255, 255, 255, 0.2)' }
       }}>
         {steps.map((step, index) => (
           <Step key={index} active={true}>
             <StepLabel icon={step.icon}>
-              <Typography variant="h6" sx={{ color: '#00fff2' }}>
+              <Typography variant="h6" sx={{ color: '#FF6B35' }}>
                 {step.label}
               </Typography>
             </StepLabel>
@@ -113,14 +113,14 @@ const UserGuide = () => {
                   p: 2, 
                   background: 'rgba(2, 8, 22, 0.95)',
                   backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(0, 255, 242, 0.3)',
+                  border: '1px solid rgba(255, 255, 255, 0.3)',
                 }}>
                   <List dense>
                     {step.tips.map((tip, idx) => (
                       <React.Fragment key={idx}>
                         <ListItem>
                           <ListItemIcon>
-                            <TipsAndUpdatesIcon sx={{ color: '#00fff2' }} />
+                            <TipsAndUpdatesIcon sx={{ color: '#FF6B35' }} />
                           </ListItemIcon>
                           <ListItemText 
                             primary={tip} 
@@ -132,7 +132,7 @@ const UserGuide = () => {
                           />
                         </ListItem>
                         {idx < step.tips.length - 1 && (
-                          <Divider sx={{ borderColor: 'rgba(0, 255, 242, 0.1)' }} />
+                          <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.1)' }} />
                         )}
                       </React.Fragment>
                     ))}

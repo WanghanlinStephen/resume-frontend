@@ -104,18 +104,18 @@ const ResumeForm = () => {
           variant="h4" 
           gutterBottom 
           sx={{ 
-            color: '#00fff2',
+            color: '#FF6B35',
             textAlign: 'center',
             mb: 4,
             fontWeight: 700,
-            textShadow: '0 0 10px rgba(0, 255, 242, 0.3)',
+            textShadow: '0 0 10px rgba(255, 107, 53, 0.3)',
           }}
         >
           填写简历信息
         </Typography>
 
         <Paper sx={{ p: 4, backgroundColor: 'rgba(2, 8, 22, 0.8)' }}>
-          <Typography variant="h6" gutterBottom sx={{ color: '#00fff2' }}>
+          <Typography variant="h6" gutterBottom sx={{ color: '#FF6B35' }}>
             基础信息 *
           </Typography>
           <Grid container spacing={2}>
@@ -130,13 +130,13 @@ const ResumeForm = () => {
                   '& .MuiOutlinedInput-root': {
                     color: 'rgba(255, 255, 255, 0.9)',
                     '& fieldset': {
-                      borderColor: 'rgba(0, 255, 242, 0.3)',
+                      borderColor: 'rgba(255, 107, 53, 0.3)',
                     },
                     '&:hover fieldset': {
-                      borderColor: 'rgba(0, 255, 242, 0.5)',
+                      borderColor: 'rgba(255, 107, 53, 0.5)',
                     },
                     '&.Mui-focused fieldset': {
-                      borderColor: '#00fff2',
+                      borderColor: '#FF6B35',
                     },
                   },
                 }}
@@ -153,13 +153,13 @@ const ResumeForm = () => {
                   '& .MuiOutlinedInput-root': {
                     color: 'rgba(255, 255, 255, 0.9)',
                     '& fieldset': {
-                      borderColor: 'rgba(0, 255, 242, 0.3)',
+                      borderColor: 'rgba(255, 107, 53, 0.3)',
                     },
                     '&:hover fieldset': {
-                      borderColor: 'rgba(0, 255, 242, 0.5)',
+                      borderColor: 'rgba(255, 107, 53, 0.5)',
                     },
                     '&.Mui-focused fieldset': {
-                      borderColor: '#00fff2',
+                      borderColor: '#FF6B35',
                     },
                   },
                 }}
@@ -176,13 +176,13 @@ const ResumeForm = () => {
                   '& .MuiOutlinedInput-root': {
                     color: 'rgba(255, 255, 255, 0.9)',
                     '& fieldset': {
-                      borderColor: 'rgba(0, 255, 242, 0.3)',
+                      borderColor: 'rgba(255, 107, 53, 0.3)',
                     },
                     '&:hover fieldset': {
-                      borderColor: 'rgba(0, 255, 242, 0.5)',
+                      borderColor: 'rgba(255, 107, 53, 0.5)',
                     },
                     '&.Mui-focused fieldset': {
-                      borderColor: '#00fff2',
+                      borderColor: '#FF6B35',
                     },
                   },
                 }}
@@ -199,13 +199,13 @@ const ResumeForm = () => {
                   '& .MuiOutlinedInput-root': {
                     color: 'rgba(255, 255, 255, 0.9)',
                     '& fieldset': {
-                      borderColor: 'rgba(0, 255, 242, 0.3)',
+                      borderColor: 'rgba(255, 107, 53, 0.3)',
                     },
                     '&:hover fieldset': {
-                      borderColor: 'rgba(0, 255, 242, 0.5)',
+                      borderColor: 'rgba(255, 107, 53, 0.5)',
                     },
                     '&.Mui-focused fieldset': {
-                      borderColor: '#00fff2',
+                      borderColor: '#FF6B35',
                     },
                   },
                 }}
@@ -213,9 +213,9 @@ const ResumeForm = () => {
             </Grid>
           </Grid>
 
-          <Divider sx={{ my: 4, borderColor: 'rgba(0, 255, 242, 0.3)' }} />
+          <Divider sx={{ my: 4, borderColor: 'rgba(255, 107, 53, 0.3)' }} />
 
-          <Typography variant="h6" gutterBottom sx={{ color: '#00fff2' }}>
+          <Typography variant="h6" gutterBottom sx={{ color: '#FF6B35' }}>
             教育信息 *
           </Typography>
           {formData.education.map((edu, index) => (
@@ -232,13 +232,13 @@ const ResumeForm = () => {
                       '& .MuiOutlinedInput-root': {
                         color: 'rgba(255, 255, 255, 0.9)',
                         '& fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.3)',
+                          borderColor: 'rgba(255, 107, 53, 0.3)',
                         },
                         '&:hover fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.5)',
+                          borderColor: 'rgba(255, 107, 53, 0.5)',
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: '#00fff2',
+                          borderColor: '#FF6B35',
                         },
                       },
                     }}
@@ -255,13 +255,13 @@ const ResumeForm = () => {
                       '& .MuiOutlinedInput-root': {
                         color: 'rgba(255, 255, 255, 0.9)',
                         '& fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.3)',
+                          borderColor: 'rgba(255, 107, 53, 0.3)',
                         },
                         '&:hover fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.5)',
+                          borderColor: 'rgba(255, 107, 53, 0.5)',
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: '#00fff2',
+                          borderColor: '#FF6B35',
                         },
                       },
                     }}
@@ -278,13 +278,13 @@ const ResumeForm = () => {
                       '& .MuiOutlinedInput-root': {
                         color: 'rgba(255, 255, 255, 0.9)',
                         '& fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.3)',
+                          borderColor: 'rgba(255, 107, 53, 0.3)',
                         },
                         '&:hover fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.5)',
+                          borderColor: 'rgba(255, 107, 53, 0.5)',
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: '#00fff2',
+                          borderColor: '#FF6B35',
                         },
                       },
                     }}
@@ -301,13 +301,13 @@ const ResumeForm = () => {
                       '& .MuiOutlinedInput-root': {
                         color: 'rgba(255, 255, 255, 0.9)',
                         '& fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.3)',
+                          borderColor: 'rgba(255, 107, 53, 0.3)',
                         },
                         '&:hover fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.5)',
+                          borderColor: 'rgba(255, 107, 53, 0.5)',
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: '#00fff2',
+                          borderColor: '#FF6B35',
                         },
                       },
                     }}
@@ -325,13 +325,13 @@ const ResumeForm = () => {
                       '& .MuiOutlinedInput-root': {
                         color: 'rgba(255, 255, 255, 0.9)',
                         '& fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.3)',
+                          borderColor: 'rgba(255, 107, 53, 0.3)',
                         },
                         '&:hover fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.5)',
+                          borderColor: 'rgba(255, 107, 53, 0.5)',
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: '#00fff2',
+                          borderColor: '#FF6B35',
                         },
                       },
                     }}
@@ -344,9 +344,9 @@ const ResumeForm = () => {
                   onClick={removeArrayFieldItem('education', index)}
                   sx={{ 
                     mt: 1,
-                    color: '#ff4444',
+                    color: '#FF6B35',
                     '&:hover': {
-                      backgroundColor: 'rgba(255, 68, 68, 0.1)',
+                      backgroundColor: 'rgba(255, 107, 53, 0.1)',
                     }
                   }}
                 >
@@ -360,18 +360,18 @@ const ResumeForm = () => {
             onClick={addArrayFieldItem('education')}
             sx={{ 
               mt: 1,
-              color: '#00fff2',
+              color: '#FF6B35',
               '&:hover': {
-                backgroundColor: 'rgba(0, 255, 242, 0.1)',
+                backgroundColor: 'rgba(255, 107, 53, 0.1)',
               }
             }}
           >
             添加教育经历
           </Button>
 
-          <Divider sx={{ my: 4, borderColor: 'rgba(0, 255, 242, 0.3)' }} />
+          <Divider sx={{ my: 4, borderColor: 'rgba(255, 107, 53, 0.3)' }} />
 
-          <Typography variant="h6" gutterBottom sx={{ color: '#00fff2' }}>
+          <Typography variant="h6" gutterBottom sx={{ color: '#FF6B35' }}>
             专业技能 *
           </Typography>
           <TextField
@@ -387,21 +387,21 @@ const ResumeForm = () => {
               '& .MuiOutlinedInput-root': {
                 color: 'rgba(255, 255, 255, 0.9)',
                 '& fieldset': {
-                  borderColor: 'rgba(0, 255, 242, 0.3)',
+                  borderColor: 'rgba(255, 107, 53, 0.3)',
                 },
                 '&:hover fieldset': {
-                  borderColor: 'rgba(0, 255, 242, 0.5)',
+                  borderColor: 'rgba(255, 107, 53, 0.5)',
                 },
                 '&.Mui-focused fieldset': {
-                  borderColor: '#00fff2',
+                  borderColor: '#FF6B35',
                 },
               },
             }}
           />
 
-          <Divider sx={{ my: 4, borderColor: 'rgba(0, 255, 242, 0.3)' }} />
+          <Divider sx={{ my: 4, borderColor: 'rgba(255, 107, 53, 0.3)' }} />
 
-          <Typography variant="h6" gutterBottom sx={{ color: '#00fff2' }}>
+          <Typography variant="h6" gutterBottom sx={{ color: '#FF6B35' }}>
             工作经历 *
           </Typography>
           {formData.workExperience.map((work, index) => (
@@ -418,13 +418,13 @@ const ResumeForm = () => {
                       '& .MuiOutlinedInput-root': {
                         color: 'rgba(255, 255, 255, 0.9)',
                         '& fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.3)',
+                          borderColor: 'rgba(255, 107, 53, 0.3)',
                         },
                         '&:hover fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.5)',
+                          borderColor: 'rgba(255, 107, 53, 0.5)',
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: '#00fff2',
+                          borderColor: '#FF6B35',
                         },
                       },
                     }}
@@ -441,13 +441,13 @@ const ResumeForm = () => {
                       '& .MuiOutlinedInput-root': {
                         color: 'rgba(255, 255, 255, 0.9)',
                         '& fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.3)',
+                          borderColor: 'rgba(255, 107, 53, 0.3)',
                         },
                         '&:hover fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.5)',
+                          borderColor: 'rgba(255, 107, 53, 0.5)',
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: '#00fff2',
+                          borderColor: '#FF6B35',
                         },
                       },
                     }}
@@ -465,13 +465,13 @@ const ResumeForm = () => {
                       '& .MuiOutlinedInput-root': {
                         color: 'rgba(255, 255, 255, 0.9)',
                         '& fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.3)',
+                          borderColor: 'rgba(255, 107, 53, 0.3)',
                         },
                         '&:hover fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.5)',
+                          borderColor: 'rgba(255, 107, 53, 0.5)',
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: '#00fff2',
+                          borderColor: '#FF6B35',
                         },
                       },
                     }}
@@ -490,13 +490,13 @@ const ResumeForm = () => {
                       '& .MuiOutlinedInput-root': {
                         color: 'rgba(255, 255, 255, 0.9)',
                         '& fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.3)',
+                          borderColor: 'rgba(255, 107, 53, 0.3)',
                         },
                         '&:hover fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.5)',
+                          borderColor: 'rgba(255, 107, 53, 0.5)',
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: '#00fff2',
+                          borderColor: '#FF6B35',
                         },
                       },
                     }}
@@ -509,9 +509,9 @@ const ResumeForm = () => {
                   onClick={removeArrayFieldItem('workExperience', index)}
                   sx={{ 
                     mt: 1,
-                    color: '#ff4444',
+                    color: '#FF6B35',
                     '&:hover': {
-                      backgroundColor: 'rgba(255, 68, 68, 0.1)',
+                      backgroundColor: 'rgba(255, 107, 53, 0.1)',
                     }
                   }}
                 >
@@ -525,18 +525,18 @@ const ResumeForm = () => {
             onClick={addArrayFieldItem('workExperience')}
             sx={{ 
               mt: 1,
-              color: '#00fff2',
+              color: '#FF6B35',
               '&:hover': {
-                backgroundColor: 'rgba(0, 255, 242, 0.1)',
+                backgroundColor: 'rgba(255, 107, 53, 0.1)',
               }
             }}
           >
             添加工作经历
           </Button>
 
-          <Divider sx={{ my: 4, borderColor: 'rgba(0, 255, 242, 0.3)' }} />
+          <Divider sx={{ my: 4, borderColor: 'rgba(255, 107, 53, 0.3)' }} />
 
-          <Typography variant="h6" gutterBottom sx={{ color: '#00fff2' }}>
+          <Typography variant="h6" gutterBottom sx={{ color: '#FF6B35' }}>
             项目经历
           </Typography>
           {formData.projects.map((project, index) => (
@@ -552,13 +552,13 @@ const ResumeForm = () => {
                       '& .MuiOutlinedInput-root': {
                         color: 'rgba(255, 255, 255, 0.9)',
                         '& fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.3)',
+                          borderColor: 'rgba(255, 107, 53, 0.3)',
                         },
                         '&:hover fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.5)',
+                          borderColor: 'rgba(255, 107, 53, 0.5)',
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: '#00fff2',
+                          borderColor: '#FF6B35',
                         },
                       },
                     }}
@@ -574,13 +574,13 @@ const ResumeForm = () => {
                       '& .MuiOutlinedInput-root': {
                         color: 'rgba(255, 255, 255, 0.9)',
                         '& fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.3)',
+                          borderColor: 'rgba(255, 107, 53, 0.3)',
                         },
                         '&:hover fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.5)',
+                          borderColor: 'rgba(255, 107, 53, 0.5)',
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: '#00fff2',
+                          borderColor: '#FF6B35',
                         },
                       },
                     }}
@@ -597,13 +597,13 @@ const ResumeForm = () => {
                       '& .MuiOutlinedInput-root': {
                         color: 'rgba(255, 255, 255, 0.9)',
                         '& fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.3)',
+                          borderColor: 'rgba(255, 107, 53, 0.3)',
                         },
                         '&:hover fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.5)',
+                          borderColor: 'rgba(255, 107, 53, 0.5)',
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: '#00fff2',
+                          borderColor: '#FF6B35',
                         },
                       },
                     }}
@@ -621,13 +621,13 @@ const ResumeForm = () => {
                       '& .MuiOutlinedInput-root': {
                         color: 'rgba(255, 255, 255, 0.9)',
                         '& fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.3)',
+                          borderColor: 'rgba(255, 107, 53, 0.3)',
                         },
                         '&:hover fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.5)',
+                          borderColor: 'rgba(255, 107, 53, 0.5)',
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: '#00fff2',
+                          borderColor: '#FF6B35',
                         },
                       },
                     }}
@@ -640,9 +640,9 @@ const ResumeForm = () => {
                   onClick={removeArrayFieldItem('projects', index)}
                   sx={{ 
                     mt: 1,
-                    color: '#ff4444',
+                    color: '#FF6B35',
                     '&:hover': {
-                      backgroundColor: 'rgba(255, 68, 68, 0.1)',
+                      backgroundColor: 'rgba(255, 107, 53, 0.1)',
                     }
                   }}
                 >
@@ -656,18 +656,18 @@ const ResumeForm = () => {
             onClick={addArrayFieldItem('projects')}
             sx={{ 
               mt: 1,
-              color: '#00fff2',
+              color: '#FF6B35',
               '&:hover': {
-                backgroundColor: 'rgba(0, 255, 242, 0.1)',
+                backgroundColor: 'rgba(255, 107, 53, 0.1)',
               }
             }}
           >
             添加项目经历
           </Button>
 
-          <Divider sx={{ my: 4, borderColor: 'rgba(0, 255, 242, 0.3)' }} />
+          <Divider sx={{ my: 4, borderColor: 'rgba(255, 107, 53, 0.3)' }} />
 
-          <Typography variant="h6" gutterBottom sx={{ color: '#00fff2' }}>
+          <Typography variant="h6" gutterBottom sx={{ color: '#FF6B35' }}>
             奖项
           </Typography>
           {formData.awards.map((award, index) => (
@@ -683,13 +683,13 @@ const ResumeForm = () => {
                       '& .MuiOutlinedInput-root': {
                         color: 'rgba(255, 255, 255, 0.9)',
                         '& fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.3)',
+                          borderColor: 'rgba(255, 107, 53, 0.3)',
                         },
                         '&:hover fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.5)',
+                          borderColor: 'rgba(255, 107, 53, 0.5)',
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: '#00fff2',
+                          borderColor: '#FF6B35',
                         },
                       },
                     }}
@@ -706,13 +706,13 @@ const ResumeForm = () => {
                       '& .MuiOutlinedInput-root': {
                         color: 'rgba(255, 255, 255, 0.9)',
                         '& fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.3)',
+                          borderColor: 'rgba(255, 107, 53, 0.3)',
                         },
                         '&:hover fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.5)',
+                          borderColor: 'rgba(255, 107, 53, 0.5)',
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: '#00fff2',
+                          borderColor: '#FF6B35',
                         },
                       },
                     }}
@@ -730,13 +730,13 @@ const ResumeForm = () => {
                       '& .MuiOutlinedInput-root': {
                         color: 'rgba(255, 255, 255, 0.9)',
                         '& fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.3)',
+                          borderColor: 'rgba(255, 107, 53, 0.3)',
                         },
                         '&:hover fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.5)',
+                          borderColor: 'rgba(255, 107, 53, 0.5)',
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: '#00fff2',
+                          borderColor: '#FF6B35',
                         },
                       },
                     }}
@@ -749,9 +749,9 @@ const ResumeForm = () => {
                   onClick={removeArrayFieldItem('awards', index)}
                   sx={{ 
                     mt: 1,
-                    color: '#ff4444',
+                    color: '#FF6B35',
                     '&:hover': {
-                      backgroundColor: 'rgba(255, 68, 68, 0.1)',
+                      backgroundColor: 'rgba(255, 107, 53, 0.1)',
                     }
                   }}
                 >
@@ -765,18 +765,18 @@ const ResumeForm = () => {
             onClick={addArrayFieldItem('awards')}
             sx={{ 
               mt: 1,
-              color: '#00fff2',
+              color: '#FF6B35',
               '&:hover': {
-                backgroundColor: 'rgba(0, 255, 242, 0.1)',
+                backgroundColor: 'rgba(255, 107, 53, 0.1)',
               }
             }}
           >
             添加奖项
           </Button>
 
-          <Divider sx={{ my: 4, borderColor: 'rgba(0, 255, 242, 0.3)' }} />
+          <Divider sx={{ my: 4, borderColor: 'rgba(255, 107, 53, 0.3)' }} />
 
-          <Typography variant="h6" gutterBottom sx={{ color: '#00fff2' }}>
+          <Typography variant="h6" gutterBottom sx={{ color: '#FF6B35' }}>
             发表文章
           </Typography>
           {formData.publications.map((pub, index) => (
@@ -792,13 +792,13 @@ const ResumeForm = () => {
                       '& .MuiOutlinedInput-root': {
                         color: 'rgba(255, 255, 255, 0.9)',
                         '& fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.3)',
+                          borderColor: 'rgba(255, 107, 53, 0.3)',
                         },
                         '&:hover fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.5)',
+                          borderColor: 'rgba(255, 107, 53, 0.5)',
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: '#00fff2',
+                          borderColor: '#FF6B35',
                         },
                       },
                     }}
@@ -815,13 +815,13 @@ const ResumeForm = () => {
                       '& .MuiOutlinedInput-root': {
                         color: 'rgba(255, 255, 255, 0.9)',
                         '& fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.3)',
+                          borderColor: 'rgba(255, 107, 53, 0.3)',
                         },
                         '&:hover fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.5)',
+                          borderColor: 'rgba(255, 107, 53, 0.5)',
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: '#00fff2',
+                          borderColor: '#FF6B35',
                         },
                       },
                     }}
@@ -839,13 +839,13 @@ const ResumeForm = () => {
                       '& .MuiOutlinedInput-root': {
                         color: 'rgba(255, 255, 255, 0.9)',
                         '& fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.3)',
+                          borderColor: 'rgba(255, 107, 53, 0.3)',
                         },
                         '&:hover fieldset': {
-                          borderColor: 'rgba(0, 255, 242, 0.5)',
+                          borderColor: 'rgba(255, 107, 53, 0.5)',
                         },
                         '&.Mui-focused fieldset': {
-                          borderColor: '#00fff2',
+                          borderColor: '#FF6B35',
                         },
                       },
                     }}
@@ -858,9 +858,9 @@ const ResumeForm = () => {
                   onClick={removeArrayFieldItem('publications', index)}
                   sx={{ 
                     mt: 1,
-                    color: '#ff4444',
+                    color: '#FF6B35',
                     '&:hover': {
-                      backgroundColor: 'rgba(255, 68, 68, 0.1)',
+                      backgroundColor: 'rgba(255, 107, 53, 0.1)',
                     }
                   }}
                 >
@@ -874,9 +874,9 @@ const ResumeForm = () => {
             onClick={addArrayFieldItem('publications')}
             sx={{ 
               mt: 1,
-              color: '#00fff2',
+              color: '#FF6B35',
               '&:hover': {
-                backgroundColor: 'rgba(0, 255, 242, 0.1)',
+                backgroundColor: 'rgba(255, 107, 53, 0.1)',
               }
             }}
           >
@@ -899,10 +899,10 @@ const ResumeForm = () => {
               variant="contained"
               onClick={handleSubmit}
               sx={{
-                backgroundColor: '#00fff2',
+                backgroundColor: '#FF6B35',
                 color: '#020816',
                 '&:hover': {
-                  backgroundColor: 'rgba(0, 255, 242, 0.8)',
+                  backgroundColor: 'rgba(255, 107, 53, 0.8)',
                 }
               }}
             >

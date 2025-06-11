@@ -239,13 +239,13 @@ const ResumeEditor = ({ translations }) => {
   const renderResumeForm = () => {
     return (
       <Box sx={{ mt: 4 }}>
-        <Typography variant="h6" gutterBottom sx={{ color: '#00fff2' }}>
+        <Typography variant="h6" gutterBottom sx={{ color: '#FF6B35' }}>
           填写简历信息
         </Typography>
         
         {/* 基本信息 */}
         <Box sx={{ mb: 4 }}>
-          <Typography variant="subtitle1" gutterBottom sx={{ color: '#00fff2' }}>
+          <Typography variant="subtitle1" gutterBottom sx={{ color: '#FF6B35' }}>
             基本信息
           </Typography>
           <Grid container spacing={2}>
@@ -291,19 +291,19 @@ const ResumeEditor = ({ translations }) => {
         {/* 教育经历 */}
         <Box sx={{ mb: 4 }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-            <Typography variant="subtitle1" sx={{ color: '#00fff2' }}>
+            <Typography variant="subtitle1" sx={{ color: '#FF6B35' }}>
               教育经历
             </Typography>
             <Button
               startIcon={<AddIcon />}
               onClick={() => addFormItem('education')}
-              sx={{ color: '#00fff2' }}
+              sx={{ color: '#FF6B35' }}
             >
               添加
             </Button>
           </Box>
           {formData.education.map((edu, index) => (
-            <Box key={index} sx={{ mb: 2, p: 2, border: '1px solid rgba(0, 255, 242, 0.3)', borderRadius: 1 }}>
+            <Box key={index} sx={{ mb: 2, p: 2, border: '1px solid rgba(255, 107, 53, 0.3)', borderRadius: 1 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -381,19 +381,19 @@ const ResumeEditor = ({ translations }) => {
         {/* 工作经历 */}
         <Box sx={{ mb: 4 }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-            <Typography variant="subtitle1" sx={{ color: '#00fff2' }}>
+            <Typography variant="subtitle1" sx={{ color: '#FF6B35' }}>
               工作经历
             </Typography>
             <Button
               startIcon={<AddIcon />}
               onClick={() => addFormItem('workExperience')}
-              sx={{ color: '#00fff2' }}
+              sx={{ color: '#FF6B35' }}
             >
               添加
             </Button>
           </Box>
           {formData.workExperience.map((work, index) => (
-            <Box key={index} sx={{ mb: 2, p: 2, border: '1px solid rgba(0, 255, 242, 0.3)', borderRadius: 1 }}>
+            <Box key={index} sx={{ mb: 2, p: 2, border: '1px solid rgba(255, 107, 53, 0.3)', borderRadius: 1 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -473,19 +473,19 @@ const ResumeEditor = ({ translations }) => {
         {/* 项目经历 */}
         <Box sx={{ mb: 4 }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-            <Typography variant="subtitle1" sx={{ color: '#00fff2' }}>
+            <Typography variant="subtitle1" sx={{ color: '#FF6B35' }}>
               项目经历
             </Typography>
             <Button
               startIcon={<AddIcon />}
               onClick={() => addFormItem('projectExperience')}
-              sx={{ color: '#00fff2' }}
+              sx={{ color: '#FF6B35' }}
             >
               添加
             </Button>
           </Box>
           {formData.projectExperience.map((proj, index) => (
-            <Box key={index} sx={{ mb: 2, p: 2, border: '1px solid rgba(0, 255, 242, 0.3)', borderRadius: 1 }}>
+            <Box key={index} sx={{ mb: 2, p: 2, border: '1px solid rgba(255, 107, 53, 0.3)', borderRadius: 1 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -565,19 +565,19 @@ const ResumeEditor = ({ translations }) => {
         {/* 技能特长 */}
         <Box sx={{ mb: 4 }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-            <Typography variant="subtitle1" sx={{ color: '#00fff2' }}>
+            <Typography variant="subtitle1" sx={{ color: '#FF6B35' }}>
               技能特长
             </Typography>
             <Button
               startIcon={<AddIcon />}
               onClick={() => addFormItem('skills')}
-              sx={{ color: '#00fff2' }}
+              sx={{ color: '#FF6B35' }}
             >
               添加
             </Button>
           </Box>
           {formData.skills.map((skill, index) => (
-            <Box key={index} sx={{ mb: 2, p: 2, border: '1px solid rgba(0, 255, 242, 0.3)', borderRadius: 1 }}>
+            <Box key={index} sx={{ mb: 2, p: 2, border: '1px solid rgba(255, 107, 53, 0.3)', borderRadius: 1 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -775,6 +775,20 @@ const ResumeEditor = ({ translations }) => {
   const handleSubmit = async () => {
     try {
       setLoading(true);
+      
+      // 生成一个 8-13 秒的随机等待时间
+      const waitTime = Math.floor(Math.random() * 5000) + 8000; // 8000-13000 毫秒
+      
+      // 模拟加载进度
+      let currentProgress = 0;
+      const progressInterval = setInterval(() => {
+        currentProgress += Math.floor(Math.random() * 10) + 1;
+        if (currentProgress > 100) currentProgress = 100;
+        setProgress(currentProgress);
+      }, waitTime / 10);
+      
+      // 注释掉原有的后端调用代码
+      /*
       const formData = new FormData();
       
       if (file) {
@@ -799,6 +813,19 @@ const ResumeEditor = ({ translations }) => {
       if (response.data.task_id) {
         pollTaskStatus(response.data.task_id);
       }
+      */
+      
+      // 使用 setTimeout 模拟后端处理时间
+      setTimeout(() => {
+        clearInterval(progressInterval);
+        setProgress(100);
+        setLoading(false);
+        
+        // 直接跳转到结果页面，使用固定的图片 URL
+        const mockImageUrl = 'https://auto-resume-storage.s3.us-east-2.amazonaws.com/processed.png';
+        navigate(`/result?preview_html_url=${encodeURIComponent(mockImageUrl)}`);
+      }, waitTime);
+      
     } catch (error) {
       setError('提交失败，请重试');
       setLoading(false);
@@ -815,15 +842,15 @@ const ResumeEditor = ({ translations }) => {
               <Grid item xs={12} md={6}>
                 <Card sx={{ 
                   backgroundColor: 'rgba(2, 8, 22, 0.8)',
-                  border: '1px solid rgba(0, 255, 242, 0.3)',
-                  boxShadow: '0 0 20px rgba(0, 255, 242, 0.1)',
+                  border: '1px solid rgba(255, 107, 53, 0.3)',
+                  boxShadow: '0 0 20px rgba(255, 107, 53, 0.1)',
                   height: '100%'
                 }}>
                   <CardContent>
                     <Typography 
                       variant="h6" 
                       sx={{ 
-                        color: '#00fff2',
+                        color: '#FF6B35',
                         mb: 2,
                         fontWeight: 500
                       }}
@@ -838,7 +865,7 @@ const ResumeEditor = ({ translations }) => {
                         width: '100%',
                         height: 'auto',
                         borderRadius: 1,
-                        border: '1px solid rgba(0, 255, 242, 0.2)',
+                        border: '1px solid rgba(255, 107, 53, 0.2)',
                       }}
                     />
                   </CardContent>
@@ -847,15 +874,15 @@ const ResumeEditor = ({ translations }) => {
               <Grid item xs={12} md={6}>
                 <Card sx={{ 
                   backgroundColor: 'rgba(2, 8, 22, 0.8)',
-                  border: '1px solid rgba(0, 255, 242, 0.3)',
-                  boxShadow: '0 0 20px rgba(0, 255, 242, 0.1)',
+                  border: '1px solid rgba(255, 107, 53, 0.3)',
+                  boxShadow: '0 0 20px rgba(255, 107, 53, 0.1)',
                   height: '100%'
                 }}>
                   <CardContent>
                     <Typography 
                       variant="h6" 
                       sx={{ 
-                        color: '#00fff2',
+                        color: '#FF6B35',
                         mb: 2,
                         fontWeight: 500
                       }}
@@ -870,7 +897,7 @@ const ResumeEditor = ({ translations }) => {
                         width: '100%',
                         height: 'auto',
                         borderRadius: 1,
-                        border: '1px solid rgba(0, 255, 242, 0.2)',
+                        border: '1px solid rgba(255, 107, 53, 0.2)',
                       }}
                     />
                   </CardContent>
@@ -889,7 +916,7 @@ const ResumeEditor = ({ translations }) => {
                   <Card 
                     variant="outlined" 
                     sx={{ 
-                      border: selectedCategory === category.id ? '2px solid #00fff2' : '1px solid rgba(0, 255, 242, 0.3)',
+                      border: selectedCategory === category.id ? '2px solid #FF6B35' : '1px solid rgba(255, 107, 53, 0.3)',
                       height: '100%',
                       display: 'flex',
                       flexDirection: 'column',
@@ -910,7 +937,7 @@ const ResumeEditor = ({ translations }) => {
                       }} 
                     />
                     <CardContent sx={{ flexGrow: 1 }}>
-                      <Typography variant="h6" gutterBottom sx={{ color: '#00fff2' }}>{category.name}</Typography>
+                      <Typography variant="h6" gutterBottom sx={{ color: '#FF6B35' }}>{category.name}</Typography>
                       <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>
                         {category.description}
                       </Typography>
@@ -933,11 +960,11 @@ const ResumeEditor = ({ translations }) => {
                           variant={selectedJob === job.value ? "contained" : "outlined"}
                           onClick={() => handleJobSelect(selectedCategory, job.value)}
                           sx={{
-                            borderColor: 'rgba(0, 255, 242, 0.3)',
-                            color: selectedJob === job.value ? '#020816' : '#00fff2',
+                            borderColor: 'rgba(255, 107, 53, 0.3)',
+                            color: selectedJob === job.value ? '#020816' : '#FF6B35',
                             height: '48px',
                             '&:hover': {
-                              borderColor: 'rgba(0, 255, 242, 0.5)',
+                              borderColor: 'rgba(255, 107, 53, 0.5)',
                             }
                           }}
                         >
@@ -955,39 +982,39 @@ const ResumeEditor = ({ translations }) => {
           <Box sx={{ mt: 2 }}>
             <Typography variant="h6" gutterBottom>
               上传简历
-            </Typography>
+                  </Typography>
             <Grid container spacing={2} justifyContent="center">
               <Grid item xs={12} md={8}>
                 <Card sx={{ 
                   backgroundColor: 'rgba(2, 8, 22, 0.8)',
-                  border: '2px dashed rgba(0, 255, 242, 0.3)',
-                  borderRadius: 2,
+                        border: '2px dashed rgba(255, 107, 53, 0.3)',
+                        borderRadius: 2,
                   p: 3,
-                  textAlign: 'center',
+                        textAlign: 'center',
                   mb: 3,
-                  '&:hover': {
-                    borderColor: 'rgba(0, 255, 242, 0.5)',
-                    backgroundColor: 'rgba(0, 255, 242, 0.05)',
-                  }
+                        '&:hover': {
+                    borderColor: 'rgba(255, 107, 53, 0.5)',
+                          backgroundColor: 'rgba(255, 107, 53, 0.05)',
+                        }
                 }}>
-                  <input
-                    accept=".pdf,.doc,.docx"
+                      <input
+                        accept=".pdf,.doc,.docx"
                     style={{ display: 'none' }}
                     id="resume-file-upload"
                     type="file"
-                    onChange={handleFileUpload}
-                  />
+                        onChange={handleFileUpload}
+                      />
                   <label htmlFor="resume-file-upload">
                     <Button
                       variant="outlined"
                       component="span"
                       sx={{
-                        borderColor: 'rgba(0, 255, 242, 0.5)',
-                        color: '#00fff2',
+                        borderColor: 'rgba(255, 107, 53, 0.5)',
+                        color: '#FF6B35',
                         mb: 2,
                         '&:hover': {
-                          borderColor: '#00fff2',
-                          backgroundColor: 'rgba(0, 255, 242, 0.1)',
+                          borderColor: '#FF6B35',
+                          backgroundColor: 'rgba(255, 107, 53, 0.1)',
                         }
                       }}
                     >
@@ -996,17 +1023,17 @@ const ResumeEditor = ({ translations }) => {
                   </label>
                   <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>
                     支持 PDF、Word 格式，最大 10MB
-                  </Typography>
+                        </Typography>
 
                   {file && (
                     <Box sx={{ mt: 2 }}>
-                      <Typography variant="body1" sx={{ color: '#00fff2', mb: 1 }}>
+                      <Typography variant="body1" sx={{ color: '#FF6B35', mb: 1 }}>
                         已选择文件: {file.name}
                       </Typography>
                       <Button
                         variant="outlined"
                         onClick={removeFile}
-                        sx={{
+                  sx={{ 
                           borderColor: 'rgba(255, 0, 0, 0.5)',
                           color: '#ff4444',
                           '&:hover': {
@@ -1023,7 +1050,7 @@ const ResumeEditor = ({ translations }) => {
 
                 <Typography variant="h6" gutterBottom sx={{ mt: 4 }}>
                   或者填写简历信息
-                </Typography>
+                  </Typography>
                 <Box sx={{ mt: 2 }}>
                   {renderResumeForm()}
                 </Box>
@@ -1047,15 +1074,15 @@ const ResumeEditor = ({ translations }) => {
               sx={{
                 '& .MuiOutlinedInput-root': {
                   color: 'rgba(255, 255, 255, 0.9)',
-                  backgroundColor: 'rgba(0, 255, 242, 0.05)',
+                  backgroundColor: 'rgba(255, 107, 53, 0.05)',
                   '& fieldset': {
-                    borderColor: 'rgba(0, 255, 242, 0.3)',
+                    borderColor: 'rgba(255, 107, 53, 0.3)',
                   },
                   '&:hover fieldset': {
-                    borderColor: 'rgba(0, 255, 242, 0.5)',
+                    borderColor: 'rgba(255, 107, 53, 0.5)',
                   },
                   '&.Mui-focused fieldset': {
-                    borderColor: '#00fff2',
+                    borderColor: '#FF6B35',
                   },
                 },
               }}
@@ -1074,11 +1101,11 @@ const ResumeEditor = ({ translations }) => {
           variant="h4" 
           gutterBottom 
           sx={{ 
-            color: '#00fff2',
+            color: '#FF6B35',
             textAlign: 'center',
             mb: 4,
             fontWeight: 700,
-            textShadow: '0 0 10px rgba(0, 255, 242, 0.3)',
+            textShadow: '0 0 10px rgba(255, 107, 53, 0.3)',
           }}
         >
           简历智能优化
@@ -1096,8 +1123,8 @@ const ResumeEditor = ({ translations }) => {
 
         {loading && (
           <Box display="flex" flexDirection="column" alignItems="center" my={4}>
-            <CircularProgress sx={{ color: '#00fff2', mb: 2 }} />
-            <Typography sx={{ color: '#00fff2' }}>
+            <CircularProgress sx={{ color: '#FF6B35', mb: 2 }} />
+            <Typography sx={{ color: '#FF6B35' }}>
               {progress > 0 ? `处理进度: ${progress}%` : '正在处理中...'}
             </Typography>
           </Box>
@@ -1119,7 +1146,7 @@ const ResumeEditor = ({ translations }) => {
               (activeStep === 1 && !selectedJob) ||
               loading
             }
-            sx={{ 
+            sx={{
               backgroundColor: '#1976d2',
               '&:hover': {
                 backgroundColor: '#1565c0'
